@@ -253,9 +253,10 @@ body.dark .search-bar .suggestions div {
 .hero {
     text-align: center;
     padding: 60px 20px;
-    background-image: url('https://images.unsplash.com/photo-1516321310766-78a395706414');
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475');
     background-size: cover;
     background-position: center;
+    background-color: #E8F5E9; /* Fallback color */
     color: #ffffff;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
