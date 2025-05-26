@@ -253,7 +253,7 @@ body.dark .search-bar .suggestions div {
 .hero {
     text-align: center;
     padding: 60px 20px;
-    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475');
+    background-image: url('https://images.pexels.com/photos/129208/pexels-photo-129208.jpeg'); /* Dark-themed microchip image */
     background-size: cover;
     background-position: center;
     background-color: #E8F5E9; /* Fallback color */
