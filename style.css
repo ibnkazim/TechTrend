@@ -253,15 +253,19 @@ body.dark .search-bar .suggestions div {
 .hero {
     text-align: center;
     padding: 60px 20px;
-    color: #2E7D32;
+    background-image: url('https://images.unsplash.com/photo-1516321310766-78a395706414');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 body.light .hero {
-    background: linear-gradient(to bottom, #E8F5E9, #ffffff);
+    background-color: #E8F5E9;
 }
 
 body.dark .hero {
-    background: linear-gradient(to bottom, #E8F5E9, #1e1e1e);
+    background-color: #1e1e1e;
 }
 
 .hero h1 {
@@ -779,6 +783,16 @@ body.dark .news p {
     color: #e0e0e0;
 }
 
+.about ul {
+    list-style-type: disc;
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.about li {
+    margin-bottom: 10px;
+}
+
 .news-slider {
     position: relative;
     max-width: 800px;
@@ -803,6 +817,11 @@ body.dark .news p {
     height: 150px;
     object-fit: cover;
     border-radius: 4px;
+    transition: transform 0.3s;
+}
+
+.news-slide img:hover {
+    transform: scale(1.05);
 }
 
 .news-slide h3 {
@@ -834,6 +853,12 @@ body.dark .news-slide h3 {
     cursor: pointer;
     font-size: 18px;
     border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+    background-color: #4CAF50;
 }
 
 .slider-prev {
@@ -1179,15 +1204,4 @@ body.dark footer {
     .canvas-container {
         max-width: 100%;
     }
-}
-#hero {
-    background-image: url('https://via.placeholder.com/1200x400?text=Hero_Image');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f0f0f0; /* Запасной цвет */
-    color: #fff; /* Для читаемости */
-    text-shadow: 1px 1px 2px rgba(0, 0,0.5); /* Тень для читаемости */
-    padding: 50px 20px;
-    text-align: center;
 }

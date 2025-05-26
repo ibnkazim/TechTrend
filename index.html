@@ -95,26 +95,31 @@
         <h2 data-lang-key="news-title">Новости</h2>
         <div class="news-slider" id="newsSlider">
             <div class="slider-container" id="sliderContainer"></div>
-            <button class="slider-prev" onclick="prevNews()">&#10094;</button>
-            <button class="slider-next" onclick="nextNews()">&#10095;</button>
+            <button class="slider-prev" onclick="prevNews()">❮</button>
+            <button class="slider-next" onclick="nextNews()">❯</button>
         </div>
         <div class="news-modal" id="newsModal" style="display: none;">
             <div class="news-modal-content">
-                <button class="close-news" onclick="closeNewsModal()">&times;</button>
+                <button class="close-news" onclick="closeNewsModal()">×</button>
                 <img id="newsModalImage" src="" alt="">
                 <h3 id="newsModalTitle"></h3>
                 <p id="newsModalDate"></p>
                 <p id="newsModalDescription"></p>
             </div>
         </div>
-        <h2 data-lang-key="news-title">Новости</h2>
-    <div id="sliderContainer"></div>
-    <button onclick="prevNews()">←</button>
-    <button onclick="nextNews()">→</button>
     </div>
     <div id="about" class="about">
         <h2 data-lang-key="about-title">О нас</h2>
-        <p data-lang-key="about-text">TechTrend — ваш надежный магазин электроники. Мы предлагаем новейшие смартфоны, ноутбуки и аксессуары от ведущих брендов. Наша цель — сделать технологии доступными для всех!</p>
+        <p data-lang-key="about-text">TechTrend — ваш надежный партнер в мире электроники. Основанная в 2015 году, наша компания стремится предоставлять клиентам самые современные технологии от ведущих мировых брендов. Мы предлагаем широкий ассортимент продукции, включая смартфоны, ноутбуки, умные часы и аксессуары. Наша миссия — сделать передовые технологии доступными каждому, обеспечивая высокое качество обслуживания, конкурентные цены и быструю доставку по всей России.</p>
+        <p>Наши преимущества:</p>
+        <ul>
+            <li>Широкий выбор сертифицированной продукции</li>
+            <li>Гарантия качества на все товары</li>
+            <li>Профессиональная техническая поддержка</li>
+            <li>Регулярные акции и скидки</li>
+            <li>Удобные способы оплаты и доставки</li>
+        </ul>
+        <p>Мы гордимся тем, что завоевали доверие тысяч клиентов и продолжаем развиваться, чтобы соответствовать вашим ожиданиям. Присоединяйтесь к TechTrend и откройте для себя мир инноваций!</p>
         <div class="canvas-container">
             <canvas id="categoryChart"></canvas>
         </div>
