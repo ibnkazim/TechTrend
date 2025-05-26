@@ -920,13 +920,13 @@ function handleAuth() {
         localStorage.setItem('user', JSON.stringify(currentUser));
         alert(translations[currentLanguage]['register-success']);
         closeModal('authModal');
-        updateUserStatus();
+        updateUserStatus(); // Вызов обновления статуса пользователя после регистрации
     } else {
         if (users[email] && users[email].password === password) {
             currentUser = users[email];
             localStorage.setItem('user', JSON.stringify(currentUser));
             closeModal('authModal');
-            updateUserStatus();
+            updateUserStatus(); // Вызов обновления статуса пользователя после входа
         } else {
             emailError.textContent = translations[currentLanguage]['invalid-login'];
         }
