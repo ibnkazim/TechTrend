@@ -109,14 +109,13 @@ const translations = {
         "contact-hours": "Часы работы: Пн-Пт 10:00-19:00, Сб-Вс 11:00-17:00",
         "profile-title": "Профиль",
         "profile-username": "Имя пользователя:",
-        "profile-email": "Email:",
+        "phone-placeholder": "Номер телефона:",
         "profile-update": "Обновить профиль",
         "profile-orders": "История заказов",
         "favorites-title": "Избранное",
         "login-title": "Вход",
         "register-title": "Регистрация",
         "username-placeholder": "Имя пользователя",
-        "email-placeholder": "Email",
         "password-placeholder": "Пароль",
         "confirm-password-placeholder": "Подтвердите пароль",
         "login-button": "Войти",
@@ -160,15 +159,15 @@ const translations = {
         "order-success": "Спасибо за заказ!",
         "order-receipt": "Чек заказа",
         username: "Пользователь",
-        "invalid-login": "Неверный email или пароль",
+        "invalid-login": "Неверный номер телефона или пароль",
         "register-success": "Регистрация успешна",
         "chart-title": "Распределение товаров по категориям",
         hello: "Привет",
         "password-error": "Пароли не совпадают",
-        "email-error": "Неверный формат email",
+        "phone-error": "Неверный формат номера телефона",
         "no-discounts": "Нет товаров со скидками",
         "news-date": "Дата",
-        "user-exists": "Пользователь с этим email уже существует",
+        "user-exists": "Пользователь с этим номером телефона уже существует",
         "logout-success": "Вы вышли из аккаунта",
         "no-items": "Корзина пуста",
         "avatar-success": "Аватар обновлен",
@@ -214,14 +213,13 @@ const translations = {
         "contact-hours": "Working Hours: Mon-Fri 10:00-19:00, Sat-Sun 11:00-17:00",
         "profile-title": "Profile",
         "profile-username": "Username:",
-        "profile-email": "Email:",
+        "phone-placeholder": "Phone Number:",
         "profile-update": "Update Profile",
         "profile-orders": "Order History",
         "favorites-title": "Favorites",
         "login-title": "Login",
         "register-title": "Register",
         "username-placeholder": "Username",
-        "email-placeholder": "Email",
         "password-placeholder": "Password",
         "confirm-password-placeholder": "Confirm Password",
         "login-button": "Login",
@@ -265,15 +263,15 @@ const translations = {
         "order-success": "Thank you for your order!",
         "order-receipt": "Order Receipt",
         username: "User",
-        "invalid-login": "Invalid email or password",
+        "invalid-login": "Invalid phone number or password",
         "register-success": "Registration successful",
         "chart-title": "Product Distribution by Category",
         hello: "Hello",
         "password-error": "Passwords do not match",
-        "email-error": "Invalid email format",
+        "phone-error": "Invalid phone number format",
         "no-discounts": "No discounted items",
         "news-date": "Date",
-        "user-exists": "User with this email already exists",
+        "user-exists": "User with this phone number already exists",
         "logout-success": "You have successfully logged out",
         "no-items": "Cart is empty",
         "avatar-success": "Avatar updated successfully",
@@ -376,6 +374,27 @@ function updateUserStatus() {
         userStatus.innerHTML = translations[currentLanguage]['login'];
         userStatus.setAttribute('data-lang-key', 'login');
     }
+}
+
+function formatPhoneNumber(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (!value.startsWith('7978')) {
+        value = '7978' + value;
+    }
+    if (value.length > 11) {
+        value = value.slice(0, 11);
+    }
+    let formatted = '+7 (978)';
+    if (value.length > 4) {
+        formatted += ' ' + value.slice(4, 7);
+    }
+    if (value.length > 7) {
+        formatted += '-' + value.slice(7, 9);
+    }
+    if (value.length > 9) {
+        formatted += '-' + value.slice(9, 11);
+    }
+    input.value = formatted;
 }
 
 function showSpinner(spinnerId = 'spinner') {
@@ -838,11 +857,11 @@ function showAuthPage() {
     const confirmPasswordField = document.querySelector('#confirmPasswordField');
     if (!authTitle || !authSubmit || !switchAuth || !usernameField || !confirmPasswordField) return;
     const usernameInput = document.querySelector('#usernameInput');
-    const emailInput = document.querySelector('#emailInput');
+    const phoneInput = document.querySelector('#phoneInput');
     const passwordInput = document.querySelector('#passwordInput');
     const confirmPasswordInput = document.querySelector('#confirmPasswordInput');
     if (usernameInput) usernameInput.value = '';
-    if (emailInput) emailInput.value = '';
+    if (phoneInput) phoneInput.value = '+7 (978)';
     if (passwordInput) passwordInput.value = '';
     if (confirmPasswordInput) confirmPasswordInput.value = '';
     document.querySelectorAll('.error').forEach(error => error.textContent = '');
@@ -867,29 +886,29 @@ function switchAuthMode() {
 }
 
 function handleAuth() {
-    const email = document.querySelector('#emailInput')?.value.trim();
+    const phone = document.querySelector('#phoneInput')?.value.trim();
     const password = document.querySelector('#passwordInput')?.value;
     const username = document.querySelector('#usernameInput')?.value.trim();
     const confirmPassword = document.querySelector('#confirmPasswordInput')?.value;
-    const emailError = document.querySelector('#emailAuthError');
+    const phoneError = document.querySelector('#phoneAuthError');
     const passwordError = document.querySelector('#passwordAuthError');
     const usernameError = document.querySelector('#usernameAuthError');
     const confirmPasswordError = document.querySelector('#confirmPasswordError');
 
-    if (!emailError || !passwordError || !usernameError || !confirmPasswordError) return;
+    if (!phoneError || !passwordError || !usernameError || !confirmPasswordError) return;
 
-    emailError.textContent = '';
+    phoneError.textContent = '';
     passwordError.textContent = '';
     usernameError.textContent = '';
     confirmPasswordError.textContent = '';
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !password || (isRegisterMode && (!username || !confirmPassword))) {
-        emailError.textContent = translations[currentLanguage]['fill-fields'];
+    const phoneRegex = /^\+7 \(978\) \d{3}-\d{2}-\d{2}$/;
+    if (!phone || !password || (isRegisterMode && (!username || !confirmPassword))) {
+        phoneError.textContent = translations[currentLanguage]['fill-fields'];
         return;
     }
-    if (!emailRegex.test(email)) {
-        emailError.textContent = translations[currentLanguage]['email-error'];
+    if (!phoneRegex.test(phone)) {
+        phoneError.textContent = translations[currentLanguage]['phone-error'];
         return;
     }
     if (isRegisterMode) {
@@ -909,25 +928,25 @@ function handleAuth() {
             confirmPasswordError.textContent = translations[currentLanguage]['password-error'];
             return;
         }
-        if (users[email]) {
-            emailError.textContent = translations[currentLanguage]['user-exists'];
+        if (users[phone]) {
+            phoneError.textContent = translations[currentLanguage]['user-exists'];
             return;
         }
-        users[email] = { email, password, username, avatar: 'https://via.placeholder.com/80?text=Avatar' };
+        users[phone] = { phone, password, username, avatar: 'https://via.placeholder.com/80?text=Avatar' };
         localStorage.setItem('users', JSON.stringify(users));
-        currentUser = users[email];
+        currentUser = users[phone];
         localStorage.setItem('user', JSON.stringify(currentUser));
         alert(translations[currentLanguage]['register-success']);
         closeModal('authModal');
-        updateUserStatus(); // Вызов обновления статуса пользователя после регистрации
+        updateUserStatus();
     } else {
-        if (users[email] && users[email].password === password) {
-            currentUser = users[email];
+        if (users[phone] && users[phone].password === password) {
+            currentUser = users[phone];
             localStorage.setItem('user', JSON.stringify(currentUser));
             closeModal('authModal');
-            updateUserStatus(); // Вызов обновления статуса пользователя после входа
+            updateUserStatus();
         } else {
-            emailError.textContent = translations[currentLanguage]['invalid-login'];
+            phoneError.textContent = translations[currentLanguage]['invalid-login'];
         }
     }
 }
@@ -935,35 +954,35 @@ function handleAuth() {
 function showProfile() {
     if (!currentUser) return;
     const profileUsername = document.querySelector('#profileUsername');
-    const profileEmail = document.querySelector('#profileEmail');
+    const profilePhone = document.querySelector('#profilePhone');
     const profilePassword = document.querySelector('#profilePassword');
     const profileAvatar = document.querySelector('#profileAvatar');
-    if (!profileUsername || !profileEmail || !profilePassword || !profileAvatar) return;
+    if (!profileUsername || !profilePhone || !profilePassword || !profileAvatar) return;
     profileUsername.value = currentUser.username;
-    profileEmail.value = currentUser.email;
+    profilePhone.value = currentUser.phone;
     profilePassword.value = '';
     profileAvatar.src = currentUser.avatar;
-    document.querySelectorAll('#usernameError, #emailError, #passwordError').forEach(error => error.textContent = '');
+    document.querySelectorAll('#usernameError, #phoneError, #passwordError').forEach(error => error.textContent = '');
     renderOrderHistory();
 }
 
 function updateProfile() {
     if (!currentUser) return;
     const username = document.querySelector('#profileUsername')?.value.trim();
-    const email = document.querySelector('#profileEmail')?.value.trim();
+    const phone = document.querySelector('#profilePhone')?.value.trim();
     const password = document.querySelector('#profilePassword')?.value;
     const usernameError = document.querySelector('#usernameError');
-    const emailError = document.querySelector('#emailError');
+    const phoneError = document.querySelector('#phoneError');
     const passwordError = document.querySelector('#passwordError');
 
-    if (!usernameError || !emailError || !passwordError) return;
+    if (!usernameError || !phoneError || !passwordError) return;
 
     usernameError.textContent = '';
-    emailError.textContent = '';
+    phoneError.textContent = '';
     passwordError.textContent = '';
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!username || !email) {
+    const phoneRegex = /^\+7 \(978\) \d{3}-\d{2}-\d{2}$/;
+    if (!username || !phone) {
         usernameError.textContent = translations[currentLanguage]['fill-fields'];
         return;
     }
@@ -971,12 +990,12 @@ function updateProfile() {
         usernameError.textContent = translations[currentLanguage]['username-error'];
         return;
     }
-    if (Object.values(users).some(u => u.username === username && u.email !== currentUser.email)) {
+    if (Object.values(users).some(u => u.username === username && u.phone !== currentUser.phone)) {
         usernameError.textContent = translations[currentLanguage]['invalid-username'];
         return;
     }
-    if (!emailRegex.test(email)) {
-        emailError.textContent = translations[currentLanguage]['email-error'];
+    if (!phoneRegex.test(phone)) {
+        phoneError.textContent = translations[currentLanguage]['phone-error'];
         return;
     }
     if (password && password.length < 6) {
@@ -984,57 +1003,69 @@ function updateProfile() {
         return;
     }
 
-    delete users[currentUser.email];
+    delete users[currentUser.phone];
     currentUser.username = username;
-    currentUser.email = email;
+    currentUser.phone = phone;
     if (password) currentUser.password = password;
-    users[email] = currentUser;
+    users[phone] = currentUser;
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('user', JSON.stringify(currentUser));
     alert(translations[currentLanguage]['profile-updated']);
+    closeModal('profileModal');
     updateUserStatus();
 }
 
 function updateAvatar() {
-    const input = document.querySelector('#avatarInput');
-    if (!input) return;
-    const file = input.files[0];
-    if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            currentUser.avatar = reader.result;
-            localStorage.setItem('user', JSON.stringify(currentUser));
-            users[currentUser.email].avatar = reader.result;
-            localStorage.setItem('users', JSON.stringify(users));
-            const profileAvatar = document.querySelector('#profileAvatar');
-            if (profileAvatar) profileAvatar.src = reader.result;
-            alert(translations[currentLanguage]['avatar-success']);
-        };
-        reader.readAsDataURL(file);
-    }
+    const avatarInput = document.querySelector('#avatarInput');
+    const profileAvatar = document.querySelector('#profileAvatar');
+    if (!avatarInput || !profileAvatar || !avatarInput.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+        profileAvatar.src = reader.result;
+        currentUser.avatar = reader.result;
+        users[currentUser.phone].avatar = reader.result;
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        alert(translations[currentLanguage]['avatar-success']);
+    };
+    reader.readAsDataURL(avatarInput.files[0]);
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('user');
+    favorites = [];
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    closeModal('profileModal');
+    updateUserStatus();
+    alert(translations[currentLanguage]['logout-success']);
+    window.location.hash = '#home';
 }
 
 function renderOrderHistory() {
     const orderHistory = document.querySelector('#orderHistory');
     if (!orderHistory) return;
     orderHistory.innerHTML = '';
-    const userOrders = orders.filter(order => order.userEmail === currentUser.email);
+    const userOrders = orders.filter(o => o.phone === currentUser.phone);
     if (!userOrders.length) {
         orderHistory.innerHTML = `<p>${translations[currentLanguage]['no-orders']}</p>`;
         return;
     }
     userOrders.forEach(order => {
-        const itemsList = order.items.map(item => {
-            const product = productsData.find(p => p.id === item.id);
-            return product ? `${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity})` : '';
-        }).filter(item => item).join(', ');
         const orderElement = document.createElement('div');
         orderElement.className = 'order';
+        let itemsHtml = order.items.map(item => {
+            const product = productsData.find(p => p.id === item.id);
+            if (!product) return '';
+            const price = product.discount ? product.price * (1 - product.discount / 100) : product.price;
+            return `<p>${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity}) - ${(price * item.quantity).toFixed(2)} ₽</p>`;
+        }).join('');
         orderElement.innerHTML = `
             <p><strong>${translations[currentLanguage]['order-date']}:</strong> ${order.date}</p>
-            <p><strong>${translations[currentLanguage]['items']}:</strong> ${itemsList}</p>
+            <p><strong>${translations[currentLanguage]['items']}:</strong></p>
+            ${itemsHtml}
             <p><strong>${translations[currentLanguage]['order-total']}:</strong> ${order.total.toFixed(2)} ₽</p>
-            <button onclick="downloadOrderPDF(${order.id})">${translations[currentLanguage]['order-details']}</button>
+            <button onclick="downloadOrderPDF(${orders.indexOf(order)})">${translations[currentLanguage]['download-pdf']}</button>
         `;
         orderHistory.appendChild(orderElement);
     });
@@ -1057,11 +1088,10 @@ function checkout() {
         return sum + price * item.quantity;
     }, 0);
     const order = {
-        id: orders.length + 1,
-        userEmail: currentUser.email,
+        phone: currentUser.phone,
+        date: new Date().toLocaleString(),
         items: [...cart],
-        total,
-        date: new Date().toISOString().split('T')[0]
+        total
     };
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
@@ -1072,80 +1102,110 @@ function checkout() {
     closeModal('cartModal');
     openModal('notificationModal');
     const notificationMessage = document.querySelector('#notificationMessage');
-    if (notificationMessage) notificationMessage.textContent = translations[currentLanguage]['order-success'];
+    if (notificationMessage) {
+        notificationMessage.textContent = translations[currentLanguage]['order-success'];
+    }
+    renderOrderHistory();
 }
 
-function downloadOrderPDF(orderId = null) {
-    const order = orderId ? orders.find(o => o.id === orderId) : latestOrder;
-    if (!order) {
-        alert('Заказ не найден');
-        return;
-    }
-    if (!window.jspdf) {
-        console.error('jsPDF not loaded');
-        alert('Ошибка генерации PDF. Проверьте подключение jsPDF.');
-        return;
-    }
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const companyName = "TechTrend";
-    const orderDateTime = new Date(); // Текущая дата и время: 26.05.2025, 03:14 AM BST
-    const formattedDateTime = orderDateTime.toLocaleString(currentLanguage === 'ru' ? 'ru-RU' : 'en-US', {
-        year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London'
-    });
+function transliterate(text) {
+    const translitMap = {
+        'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo',
+        'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M',
+        'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+        'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch',
+        'Ъ': '', 'Ы': 'Y', 'Ь': '', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+        'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch',
+        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+    };
+    return text.split('').map(char => translitMap[char] || char).join('');
+}
 
-    // Устанавливаем стандартный шрифт, чтобы избежать проблем с кодировкой
-    doc.setFont("Helvetica", "normal");
-    doc.setFontSize(16);
-    doc.text("Order Receipt", 20, 20); // Упрощённый заголовок, чтобы избежать проблем с переводом
-    doc.setFontSize(12);
-    doc.text(`Date: ${formattedDateTime}`, 20, 30);
-    doc.text(`Company: ${companyName}`, 20, 40);
-    doc.text(`Buyer: ${currentUser.username}`, 20, 50);
-    doc.text(`Email: ${currentUser.email}`, 20, 60);
-    doc.text("Items:", 20, 70);
-
-    let y = 80;
-    order.items.forEach(item => {
-        const product = productsData.find(p => p.id === item.id);
-        if (product) {
-            // Используем английское название, если текущий язык — русский, чтобы избежать проблем с кириллицей
-            const productName = currentLanguage === 'ru' ? product.name_en : product.name_en;
-            doc.text(`${productName} (x${item.quantity})`, 20, y);
-            y += 10;
+function downloadOrderPDF(orderIndex = null) {
+    try {
+        const { jsPDF } = window.jspdf;
+        if (!jsPDF) {
+            console.error("jsPDF is not loaded");
+            alert("Error: jsPDF library is not available. Please check the connection.");
+            return;
         }
-    });
-    doc.text(`Total: ${order.total.toFixed(2)} RUB`, 20, y + 10); // Используем "RUB" вместо "₽"
-    doc.save(`order_${order.id}.pdf`);
+
+        const doc = new jsPDF();
+        const order = orderIndex !== null ? orders[orderIndex] : latestOrder;
+        if (!order) {
+            console.error("Order not found");
+            alert("Error: Order not found.");
+            return;
+        }
+
+        // Set Helvetica font (supports English characters)
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(16);
+
+        // Header
+        doc.text("Order Receipt", 105, 20, { align: "center" });
+
+        // Order details
+        doc.setFontSize(12);
+        const customerName = transliterate(currentUser.username);
+        doc.text(`Customer: ${customerName}`, 20, 40);
+        doc.text(`Phone Number: ${order.phone}`, 20, 50);
+        doc.text(`Order Date: ${order.date}`, 20, 60);
+
+        // Items header
+        doc.setFontSize(14);
+        doc.text("Items:", 20, 80);
+
+        // Items list
+        doc.setFontSize(12);
+        let y = 90;
+        order.items.forEach(item => {
+            const product = productsData.find(p => p.id === item.id);
+            if (!product) return;
+            const price = product.discount ? product.price * (1 - product.discount / 100) : product.price;
+            const itemTotal = (price * item.quantity).toFixed(2);
+            const itemName = product['name_en']; // Always use English name for receipt
+            doc.text(`${itemName} (x${item.quantity}) - ${itemTotal} ₽`, 30, y);
+            y += 10;
+        });
+
+        // Total
+        doc.setFontSize(14);
+        doc.text(`Total: ${order.total.toFixed(2)} ₽`, 20, y + 10);
+
+        // Footer
+        doc.setFontSize(10);
+        doc.text("Thank you for shopping at TechTrend!", 105, y + 30, { align: "center" });
+
+        // Save PDF with sanitized filename
+        const sanitizedDate = order.date.replace(/[: ]/g, '_');
+        doc.save(`receipt_${sanitizedDate}.pdf`);
+    } catch (error) {
+        console.error("Error generating PDF:", error);
+        alert("Failed to generate receipt. Please check the browser console for details.");
+    }
 }
 
 function submitReview() {
-    if (!currentUser) {
-        alert(translations[currentLanguage]['login-required']);
-        openModal('authModal');
-        return;
-    }
-    const name = document.querySelector('#reviewName')?.value.trim();
-    const text = document.querySelector('#reviewText')?.value.trim();
-    const rating = parseInt(document.querySelector('#reviewRating')?.value);
-    if (!name || !text) {
+    const reviewName = document.querySelector('#reviewName')?.value.trim();
+    const reviewText = document.querySelector('#reviewText')?.value.trim();
+    const reviewRating = document.querySelector('#reviewRating')?.value;
+    if (!reviewName || !reviewText || !reviewRating) {
         alert(translations[currentLanguage]['fill-fields']);
         return;
     }
-    const review = { name, text, rating };
     if (!reviews[currentProductId]) reviews[currentProductId] = [];
-    reviews[currentProductId].push(review);
+    reviews[currentProductId].push({
+        name: reviewName,
+        text: reviewText,
+        rating: parseInt(reviewRating)
+    });
     localStorage.setItem('reviews', JSON.stringify(reviews));
     closeModal('reviewModal');
     showProductDetail(currentProductId);
-}
-
-function logout() {
-    currentUser = null;
-    localStorage.removeItem('user');
-    updateUserStatus();
-    closeModal('profileModal');
-    alert(translations[currentLanguage]['logout-success']);
 }
 
 function renderNews() {
@@ -1153,89 +1213,56 @@ function renderNews() {
     if (!sliderContainer) return;
     sliderContainer.innerHTML = '';
     newsData.forEach((news, index) => {
-        const slide = document.createElement('div');
-        slide.className = 'news-slide';
-        slide.onclick = () => openNewsModal(index);
-        slide.innerHTML = `
+        const newsItem = document.createElement('div');
+        newsItem.className = `news-item ${index === currentNewsIndex ? 'active' : ''}`;
+        newsItem.innerHTML = `
             <img src="${news.image}" alt="${news[currentLanguage === 'ru' ? 'title' : 'title_en']}">
-            <h3>${news[currentLanguage === 'ru' ? 'title' : 'title_en']}</h3>
-            <p>${translations[currentLanguage]['news-date']}: ${news.date}</p>
+            <div class="news-content">
+                <h3>${news[currentLanguage === 'ru' ? 'title' : 'title_en']}</h3>
+                <p>${news[currentLanguage === 'ru' ? 'description' : 'description_en'].substring(0, 100)}...</p>
+                <p>${translations[currentLanguage]['news-date']}: ${news.date}</p>
+                <button onclick="openNewsModal(${index})">${translations[currentLanguage]['details-button']}</button>
+            </div>
         `;
-        sliderContainer.appendChild(slide);
+        sliderContainer.appendChild(newsItem);
     });
-    updateSliderPosition();
+    updateSlider();
+}
+
+function updateSlider() {
+    const sliderContainer = document.querySelector('#sliderContainer');
+    if (!sliderContainer) return;
+    const items = sliderContainer.querySelectorAll('.news-item');
+    items.forEach((item, index) => {
+        item.classList.toggle('active', index === currentNewsIndex);
+    });
+}
+
+function prevNews() {
+    currentNewsIndex = (currentNewsIndex - 1 + newsData.length) % newsData.length;
+    updateSlider();
+}
+
+function nextNews() {
+    currentNewsIndex = (currentNewsIndex + 1) % newsData.length;
+    updateSlider();
 }
 
 function openNewsModal(index) {
-    currentNewsIndex = index;
     const news = newsData[index];
-    const newsModalImage = document.querySelector('#newsModalImage');
-    const newsModalTitle = document.querySelector('#newsModalTitle');
-    const newsModalDate = document.querySelector('#newsModalDate');
-    const newsModalDescription = document.querySelector('#newsModalDescription');
-    if (!newsModalImage || !newsModalTitle || !newsModalDate || !newsModalDescription) return;
-    newsModalImage.src = news.image;
-    newsModalTitle.textContent = news[currentLanguage === 'ru' ? 'title' : 'title_en'];
-    newsModalDate.textContent = `${translations[currentLanguage]['news-date']}: ${news.date}`;
-    newsModalDescription.textContent = news[currentLanguage === 'ru' ? 'description' : 'description_en'];
+    if (!news) return;
     const newsModal = document.querySelector('#newsModal');
-    if (newsModal) newsModal.style.display = 'flex';
+    if (!newsModal) return;
+    document.querySelector('#newsModalImage').src = news.image;
+    document.querySelector('#newsModalTitle').textContent = news[currentLanguage === 'ru' ? 'title' : 'title_en'];
+    document.querySelector('#newsModalDate').textContent = `${translations[currentLanguage]['news-date']}: ${news.date}`;
+    document.querySelector('#newsModalDescription').textContent = news[currentLanguage === 'ru' ? 'description' : 'description_en'];
+    newsModal.style.display = 'flex';
 }
 
 function closeNewsModal() {
     const newsModal = document.querySelector('#newsModal');
     if (newsModal) newsModal.style.display = 'none';
-}
-
-function prevNews() {
-    currentNewsIndex = (currentNewsIndex - 1 + newsData.length) % newsData.length;
-    updateSliderPosition();
-}
-
-function nextNews() {
-    currentNewsIndex = (currentNewsIndex + 1) % newsData.length;
-    updateSliderPosition();
-}
-
-function updateSliderPosition() {
-    const sliderContainer = document.querySelector('#sliderContainer');
-    if (!sliderContainer) return;
-    const slideWidth = sliderContainer.clientWidth / 3;
-    sliderContainer.style.transform = `translateX(-${currentNewsIndex * slideWidth}px)`;
-}
-
-function renderChart() {
-    const canvas = document.querySelector('#categoryChart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const categories = ['smartphones', 'laptops', 'accessories'];
-    const counts = categories.map(cat => productsData.filter(p => p.category === cat).length);
-    const backgroundColors = ['#4CAF50', '#2196F3', '#FF9800'];
-    const borderColors = ['#2E7D32', '#1976D2', '#F57C00'];
-
-    if (chartInstance) chartInstance.destroy();
-    chartInstance = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: categories.map(cat => translations[currentLanguage][`filter-${cat}`]),
-            datasets: [{
-                data: counts,
-                backgroundColor: backgroundColors,
-                borderColor: borderColors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' },
-                title: {
-                    display: true,
-                    text: translations[currentLanguage]['chart-title']
-                }
-            }
-        }
-    });
 }
 
 function showSuggestions() {
@@ -1245,27 +1272,66 @@ function showSuggestions() {
         if (suggestions) suggestions.style.display = 'none';
         return;
     }
-    suggestions.innerHTML = '';
     const filtered = productsData.filter(p =>
         p[currentLanguage === 'ru' ? 'name' : 'name_en'].toLowerCase().includes(input)
     );
-    if (filtered.length) {
-        filtered.slice(0, 5).forEach(product => {
-            const div = document.createElement('div');
-            div.className = 'suggestion';
-            div.textContent = product[currentLanguage === 'ru' ? 'name' : 'name_en'];
-            div.onclick = () => {
-                showProductDetail(product.id);
-                suggestions.style.display = 'none';
-                const searchInput = document.querySelector('#searchInput');
-                if (searchInput) searchInput.value = '';
-            };
-            suggestions.appendChild(div);
-        });
-        suggestions.style.display = 'block';
-    } else {
+    suggestions.innerHTML = '';
+    if (!filtered.length) {
         suggestions.style.display = 'none';
+        return;
     }
+    filtered.slice(0, 5).forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'suggestion';
+        div.innerHTML = `
+            <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
+            <span>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</span>
+        `;
+        div.onclick = () => {
+            showProductDetail(product.id);
+            suggestions.style.display = 'none';
+            document.querySelector('#searchInput').value = '';
+        };
+        suggestions.appendChild(div);
+    });
+    suggestions.style.display = 'block';
 }
 
-document.addEventListener('DOMContentLoaded', initialize);
+function renderChart() {
+    const ctx = document.querySelector('#categoryChart')?.getContext('2d');
+    if (!ctx) return;
+    if (chartInstance) chartInstance.destroy();
+    const categories = ['smartphones', 'laptops', 'accessories'];
+    const data = categories.map(cat => productsData.filter(p => p.category === cat).length);
+    const isDark = document.body.classList.contains('dark');
+    chartInstance = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: categories.map(cat => translations[currentLanguage][`filter-${cat}`]),
+            datasets: [{
+                data,
+                backgroundColor: ['#FF6B6B', '#4ECDC4', '#45B7D1'],
+                borderColor: isDark ? '#333' : '#fff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top', labels: { color: isDark ? '#ddd' : '#333' } },
+                title: {
+                    display: true,
+                    text: translations[currentLanguage]['chart-title'],
+                    color: isDark ? '#ddd' : '#333'
+                }
+            }
+        }
+    });
+}
+
+function scrollToSection(sectionId) {
+    window.location.hash = sectionId;
+    document.querySelector(`#${sectionId}`)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+initialize();

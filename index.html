@@ -139,8 +139,8 @@
                 <span class="error" id="usernameAuthError"></span>
             </div>
             <div class="auth-field">
-                <input type="email" id="emailInput" data-lang-key="email-placeholder" placeholder="Email">
-                <span class="error" id="emailAuthError"></span>
+                <input type="tel" id="phoneInput" data-lang-key="phone-placeholder" placeholder="+7 (978) xxx-xx-xx" oninput="formatPhoneNumber(this)">
+                <span class="error" id="phoneAuthError"></span>
             </div>
             <div class="auth-field">
                 <input type="password" id="passwordInput" data-lang-key="password-placeholder" placeholder="Пароль">
@@ -166,9 +166,9 @@
                 <span class="error" id="usernameError"></span>
             </div>
             <div class="profile-field">
-                <label data-lang-key="email-placeholder">Email:</label>
-                <input type="email" id="profileEmail" placeholder="Новый email">
-                <span class="error" id="emailError"></span>
+                <label data-lang-key="phone-placeholder">Номер телефона:</label>
+                <input type="tel" id="profilePhone" placeholder="+7 (978) xxx-xx-xx" oninput="formatPhoneNumber(this)">
+                <span class="error" id="phoneError"></span>
             </div>
             <div class="profile-field">
                 <label data-lang-key="password-placeholder">Пароль:</label>
