@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTrend</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body class="light">
+    <header>
+        <div class="logo" data-lang-key="logo">TechTrend</div>
+        <nav>
+            <a href="#home" data-lang-key="nav-home">Главная</a>
+            <a href="#catalog" data-lang-key="nav-catalog">Каталог</a>
+            <a href="#discounts" data-lang-key="nav-discounts">Скидки</a>
+            <a href="#news" data-lang-key="nav-news">Новости</a>
+            <a href="#about" data-lang-key="nav-about">О нас</a>
+            <a href="#contact" data-lang-key="nav-contact">Контакты</a>
+        </nav>
+        <div class="user-actions">
+            <div class="search-bar">
+                <input type="text" id="searchInput" data-lang-key="search-placeholder" placeholder="Поиск товаров..." oninput="showSuggestions()">
+                <div class="suggestions" id="suggestions"></div>
+            </div>
+            <button class="cart-btn" onclick="openModal('cartModal')">
+                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <span onclick="openModal('favoritesModal')" data-lang-key="favorite-button">Избранное</span>
+            <button class="theme-toggle" onclick="toggleTheme()" data-lang-key="theme-toggle">Темная тема</button>
+            <button class="lang-toggle" onclick="toggleLanguage()" data-lang-key="lang-toggle">EN</button>
+            <span id="userStatus" class="login-link" onclick="currentUser ? openModal('profileModal') : openModal('authModal')" data-lang-key="login">Войти</span>
+        </div>
+    </header>
+
+    <div id="home" class="hero">
+        <h1 data-lang-key="hero-title">Добро пожаловать в TechTrend</h1>
+        <p data-lang-key="hero-text">Инновационная электроника для вашего будущего. Смартфоны, ноутбуки и аксессуары по лучшим ценам!</p>
+        <button onclick="scrollToSection('catalog')" data-lang-key="hero-button">Перейти к каталогу</button>
+    </div>
+
+    <div id="catalog" class="filters">
+        <div class="spinner" id="spinner"></div>
+        <select id="categoryFilter" onchange="filterProducts()">
+            <option value="all" data-lang-key="filter-all">Все категории</option>
+            <option value="smartphones" data-lang-key="filter-smartphones">Смартфоны</option>
+            <option value="laptops" data-lang-key="filter-laptops">Ноутбуки</option>
+            <option value="accessories" data-lang-key="filter-accessories">Аксессуары</option>
+        </select>
+        <select id="sortFilter" onchange="sortProducts()">
+            <option value="default" data-lang-key="sort-default">Сортировка: По умолчанию</option>
+            <option value="price-asc" data-lang-key="sort-price-asc">Цена: по возрастанию</option>
+            <option value="price-desc" data-lang-key="sort-price-desc">Цена: по убыванию</option>
+            <option value="name-asc" data-lang-key="sort-name-asc">Название: А-Я</option>
+        </select>
+        <div class="price-filter">
+            <span data-lang-key="price-range">Цена:</span>
+            <input type="range" id="minPrice" min="0" max="150000" value="0" oninput="updatePriceRange()">
+            <span id="minPriceValue">0</span>
+            <span>-</span>
+            <input type="range" id="maxPrice" min="0" max="150000" value="150000" oninput="updatePriceRange()">
+            <span id="maxPriceValue">150000</span>
+        </div>
+    </div>
+
+    <div class="products" id="products"></div>
+    <div class="pagination" id="pagination"></div>
+    <div id="productDetail" class="product-detail" style="display: none;"></div>
+    <div id="discounts" class="discounts" style="display: none;">
+        <h2 data-lang-key="discounts-title">Товары со скидками</h2>
+        <div class="filters" id="discountFilters">
+            <div class="spinner" id="discountSpinner"></div>
+            <select id="discountCategoryFilter" onchange="filterDiscounts()">
+                <option value="all" data-lang-key="filter-all">Все категории</option>
+                <option value="smartphones" data-lang-key="filter-smartphones">Смартфоны</option>
+                <option value="laptops" data-lang-key="filter-laptops">Ноутбуки</option>
+                <option value="accessories" data-lang-key="filter-accessories">Аксессуары</option>
+            </select>
+            <select id="discountSortFilter" onchange="sortDiscounts()">
+                <option value="default" data-lang-key="sort-default">Сортировка: По умолчанию</option>
+                <option value="price-asc" data-lang-key="sort-price-asc">Цена: по возрастанию</option>
+                <option value="price-desc" data-lang-key="sort-price-desc">Цена: по убыванию</option>
+                <option value="name-asc" data-lang-key="sort-name-asc">Название: А-Я</option>
+            </select>
+            <div class="price-filter">
+                <span data-lang-key="price-range">Цена:</span>
+                <input type="range" id="discountMinPrice" min="0" max="150000" value="0" oninput="updateDiscountPriceRange()">
+                <span id="discountMinPriceValue">0</span>
+                <span>-</span>
+                <input type="range" id="discountMaxPrice" min="0" max="150000" value="150000" oninput="updateDiscountPriceRange()">
+                <span id="discountMaxPriceValue">150000</span>
+            </div>
+        </div>
+        <div class="products" id="discountProducts"></div>
+        <div class="pagination" id="discountPagination"></div>
+    </div>
+    <div id="news" class="news" style="display: none;">
+        <h2 data-lang-key="news-title">Новости</h2>
+        <div id="newsList"></div>
+    </div>
+    <div id="about" class="about">
+        <h2 data-lang-key="about-title">О нас</h2>
+        <p data-lang-key="about-text">TechTrend — ваш надежный магазин электроники. Мы предлагаем новейшие смартфоны, ноутбуки и аксессуары от ведущих брендов. Наша цель — сделать технологии доступными для всех!</p>
+        <div class="canvas-container">
+            <canvas id="categoryChart"></canvas>
+        </div>
+    </div>
+    <div id="contact" class="contact">
+        <h2 data-lang-key="contact-title">Контакты</h2>
+        <p data-lang-key="contact-email">Email: support@techtrend.ru</p>
+        <p data-lang-key="contact-phone">Телефон: +7 (999) 987-65-43</p>
+        <p data-lang-key="contact-address">Адрес: г. Москва, ул. Инноваций, д. 5</p>
+        <p data-lang-key="contact-hours">Часы работы: Пн-Пт 10:00-19:00, Сб-Вс 11:00-17:00</p>
+    </div>
+    <div class="modal" id="profileModal">
+    <div class="modal-content">
+        <h2 data-lang-key="profile-title">Профиль</h2>
+        <img id="profileAvatar" src="https://via.placeholder.com/80?text=Avatar" alt="Avatar">
+        <input type="file" id="avatarInput" accept="image/*" onchange="updateAvatar()">
+        <div class="profile-field">
+            <label data-lang-key="profile-username">Имя пользователя:</label>
+            <input type="text" id="profileUsername" placeholder="Имя пользователя">
+            <span class="error" id="usernameError"></span>
+        </div>
+        <div class="profile-field">
+            <label data-lang-key="email-placeholder">Email:</label>
+            <input type="email" id="profileEmail" placeholder="Новый email">
+            <span class="error" id="emailError"></span>
+        </div>
+        <div class="profile-field">
+            <label data-lang-key="password-placeholder">Пароль:</label>
+            <input type="password" id="profilePassword" placeholder="Новый пароль">
+            <span class="error" id="passwordError"></span>
+        </div>
+        <button onclick="updateProfile()" data-lang-key="profile-update">Обновить профиль</button>
+        <button onclick="logout()" data-lang-key="logout">Выйти</button>
+        <h3 data-lang-key="profile-orders">История заказов</h3>
+        <div class="order-history" id="orderHistory"></div>
+        <button onclick="closeModal('profileModal')" data-lang-key="close-button">Закрыть</button>
+    </div>
+</div>
+    <div class="modal" id="authModal">
+    <div class="modal-content">
+        <h2 id="authTitle" data-lang-key="login-title">Вход</h2>
+        <div class="auth-field" id="usernameField">
+            <input type="text" id="usernameInput" data-lang-key="username-placeholder" placeholder="Имя пользователя">
+            <span class="error" id="usernameAuthError"></span>
+        </div>
+        <div class="auth-field">
+            <input type="email" id="emailInput" data-lang-key="email-placeholder" placeholder="Email">
+            <span class="error" id="emailAuthError"></span>
+        </div>
+        <div class="auth-field">
+            <input type="password" id="passwordInput" data-lang-key="password-placeholder" placeholder="Пароль">
+            <span class="error" id="passwordAuthError"></span>
+        </div>
+        <div class="auth-field" id="confirmPasswordField" style="display: none;">
+            <input type="password" id="confirmPasswordInput" data-lang-key="confirm-password-placeholder" placeholder="Подтвердите пароль">
+            <span class="error" id="confirmPasswordError"></span>
+        </div>
+        <button id="authSubmit" onclick="handleAuth()" data-lang-key="login-button">Войти</button>
+        <a href="#" id="switchAuth" onclick="switchAuthMode()" data-lang-key="register-link">Зарегистрироваться</a>
+        <button onclick="closeModal('authModal')" data-lang-key="close-button">Закрыть</button>
+    </div>
+</div>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <h2 data-lang-key="cart-title">Корзина</h2>
+            <div id="cartItems"></div>
+            <p data-lang-key="cart-total">Итого: <span id="cartTotal">0</span> ₽</p>
+            <button onclick="checkout()" data-lang-key="checkout-button">Оформить заказ</button>
+            <button onclick="closeModal('cartModal')" data-lang-key="close-button">Закрыть</button>
+        </div>
+    </div>
+    <div class="modal" id="notificationModal">
+        <div class="modal-content">
+            <h2 data-lang-key="notification-title">Подтверждение заказа</h2>
+            <p id="notificationMessage"></p>
+            <button onclick="downloadOrderPDF()" data-lang-key="download-pdf">Скачать чек</button>
+            <button onclick="closeModal('notificationModal')" data-lang-key="close-button">Закрыть</button>
+        </div>
+    </div>
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <h2 data-lang-key="review-title">Оставить отзыв</h2>
+            <input type="text" id="reviewName" data-lang-key="review-name" placeholder="Ваше имя">
+            <textarea id="reviewText" data-lang-key="review-text" placeholder="Ваш отзыв"></textarea>
+            <select id="reviewRating" data-lang-key="review-rating">
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★</option>
+                <option value="3">★★★</option>
+                <option value="2">★★</option>
+                <option value="1">★</option>
+            </select>
+            <button onclick="submitReview()" data-lang-key="review-submit">Отправить</button>
+            <button onclick="closeModal('reviewModal')" data-lang-key="close-button">Закрыть</button>
+        </div>
+    </div>
+    <div class="modal" id="favoritesModal">
+        <div class="modal-content">
+            <h2 data-lang-key="favorites-title">Избранное</h2>
+            <div id="favoritesList"></div>
+            <button onclick="closeModal('favoritesModal')" data-lang-key="close-button">Закрыть</button>
+        </div>
+    </div>
+
+    <footer>
+        <p data-lang-key="footer">© 2025 TechTrend. Все права защищены.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
