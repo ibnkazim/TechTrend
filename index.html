@@ -25,7 +25,9 @@
                 <div class="suggestions" id="suggestions"></div>
             </div>
             <button class="cart-btn" onclick="openModal('cartModal')">
-                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
                 <span class="cart-count" id="cartCount">0</span>
             </button>
             <span onclick="openModal('favoritesModal')" data-lang-key="favorite-button">Избранное</span>
@@ -34,13 +36,11 @@
             <span id="userStatus" class="login-link" onclick="currentUser ? openModal('profileModal') : openModal('authModal')" data-lang-key="login">Войти</span>
         </div>
     </header>
-
     <div id="home" class="hero">
         <h1 data-lang-key="hero-title">Добро пожаловать в TechTrend</h1>
         <p data-lang-key="hero-text">Инновационная электроника для вашего будущего. Смартфоны, ноутбуки и аксессуары по лучшим ценам!</p>
         <button onclick="scrollToSection('catalog')" data-lang-key="hero-button">Перейти к каталогу</button>
     </div>
-
     <div id="catalog" class="filters">
         <div class="spinner" id="spinner"></div>
         <select id="categoryFilter" onchange="filterProducts()">
@@ -57,18 +57,15 @@
         </select>
         <div class="price-filter">
             <span data-lang-key="price-range">Цена:</span>
-            <input type="range" id="minPrice" min="0" max="150000" value="0" oninput="updatePriceRange()">
-            <span id="minPriceValue">0</span>
+            <input type="number" id="minPrice" min="0" max="150000" value="0" oninput="updatePriceRange()">
             <span>-</span>
-            <input type="range" id="maxPrice" min="0" max="150000" value="150000" oninput="updatePriceRange()">
-            <span id="maxPriceValue">150000</span>
+            <input type="number" id="maxPrice" min="0" max="150000" value="150000" oninput="updatePriceRange()">
         </div>
     </div>
-
     <div class="products" id="products"></div>
     <div class="pagination" id="pagination"></div>
     <div id="productDetail" class="product-detail" style="display: none;"></div>
-    <div id="discounts" class="discounts" style="display: none;">
+    <div id="discounts" class="discounts">
         <h2 data-lang-key="discounts-title">Товары со скидками</h2>
         <div class="filters" id="discountFilters">
             <div class="spinner" id="discountSpinner"></div>
@@ -86,19 +83,34 @@
             </select>
             <div class="price-filter">
                 <span data-lang-key="price-range">Цена:</span>
-                <input type="range" id="discountMinPrice" min="0" max="150000" value="0" oninput="updateDiscountPriceRange()">
-                <span id="discountMinPriceValue">0</span>
+                <input type="number" id="discountMinPrice" min="0" max="150000" value="0" oninput="updateDiscountPriceRange()">
                 <span>-</span>
-                <input type="range" id="discountMaxPrice" min="0" max="150000" value="150000" oninput="updateDiscountPriceRange()">
-                <span id="discountMaxPriceValue">150000</span>
+                <input type="number" id="discountMaxPrice" min="0" max="150000" value="150000" oninput="updateDiscountPriceRange()">
             </div>
         </div>
         <div class="products" id="discountProducts"></div>
         <div class="pagination" id="discountPagination"></div>
     </div>
-    <div id="news" class="news" style="display: none;">
+    <div id="news" class="news">
         <h2 data-lang-key="news-title">Новости</h2>
-        <div id="newsList"></div>
+        <div class="news-slider" id="newsSlider">
+            <div class="slider-container" id="sliderContainer"></div>
+            <button class="slider-prev" onclick="prevNews()">&#10094;</button>
+            <button class="slider-next" onclick="nextNews()">&#10095;</button>
+        </div>
+        <div class="news-modal" id="newsModal" style="display: none;">
+            <div class="news-modal-content">
+                <button class="close-news" onclick="closeNewsModal()">&times;</button>
+                <img id="newsModalImage" src="" alt="">
+                <h3 id="newsModalTitle"></h3>
+                <p id="newsModalDate"></p>
+                <p id="newsModalDescription"></p>
+            </div>
+        </div>
+        <h2 data-lang-key="news-title">Новости</h2>
+    <div id="sliderContainer"></div>
+    <button onclick="prevNews()">←</button>
+    <button onclick="nextNews()">→</button>
     </div>
     <div id="about" class="about">
         <h2 data-lang-key="about-title">О нас</h2>
@@ -114,58 +126,57 @@
         <p data-lang-key="contact-address">Адрес: г. Москва, ул. Инноваций, д. 5</p>
         <p data-lang-key="contact-hours">Часы работы: Пн-Пт 10:00-19:00, Сб-Вс 11:00-17:00</p>
     </div>
-    <div class="modal" id="profileModal">
-    <div class="modal-content">
-        <h2 data-lang-key="profile-title">Профиль</h2>
-        <img id="profileAvatar" src="https://via.placeholder.com/80?text=Avatar" alt="Avatar">
-        <input type="file" id="avatarInput" accept="image/*" onchange="updateAvatar()">
-        <div class="profile-field">
-            <label data-lang-key="profile-username">Имя пользователя:</label>
-            <input type="text" id="profileUsername" placeholder="Имя пользователя">
-            <span class="error" id="usernameError"></span>
-        </div>
-        <div class="profile-field">
-            <label data-lang-key="email-placeholder">Email:</label>
-            <input type="email" id="profileEmail" placeholder="Новый email">
-            <span class="error" id="emailError"></span>
-        </div>
-        <div class="profile-field">
-            <label data-lang-key="password-placeholder">Пароль:</label>
-            <input type="password" id="profilePassword" placeholder="Новый пароль">
-            <span class="error" id="passwordError"></span>
-        </div>
-        <button onclick="updateProfile()" data-lang-key="profile-update">Обновить профиль</button>
-        <button onclick="logout()" data-lang-key="logout">Выйти</button>
-        <h3 data-lang-key="profile-orders">История заказов</h3>
-        <div class="order-history" id="orderHistory"></div>
-        <button onclick="closeModal('profileModal')" data-lang-key="close-button">Закрыть</button>
-    </div>
-</div>
     <div class="modal" id="authModal">
-    <div class="modal-content">
-        <h2 id="authTitle" data-lang-key="login-title">Вход</h2>
-        <div class="auth-field" id="usernameField">
-            <input type="text" id="usernameInput" data-lang-key="username-placeholder" placeholder="Имя пользователя">
-            <span class="error" id="usernameAuthError"></span>
+        <div class="modal-content">
+            <h2 id="authTitle" data-lang-key="login-title">Вход</h2>
+            <div class="auth-field" id="usernameField">
+                <input type="text" id="usernameInput" data-lang-key="username-placeholder" placeholder="Имя пользователя">
+                <span class="error" id="usernameAuthError"></span>
+            </div>
+            <div class="auth-field">
+                <input type="email" id="emailInput" data-lang-key="email-placeholder" placeholder="Email">
+                <span class="error" id="emailAuthError"></span>
+            </div>
+            <div class="auth-field">
+                <input type="password" id="passwordInput" data-lang-key="password-placeholder" placeholder="Пароль">
+                <span class="error" id="passwordAuthError"></span>
+            </div>
+            <div class="auth-field" id="confirmPasswordField" style="display: none;">
+                <input type="password" id="confirmPasswordInput" data-lang-key="confirm-password-placeholder" placeholder="Подтвердите пароль">
+                <span class="error" id="confirmPasswordError"></span>
+            </div>
+            <button id="authSubmit" onclick="handleAuth()" data-lang-key="login-button">Войти</button>
+            <a href="#" id="switchAuth" onclick="switchAuthMode()" data-lang-key="register-link">Зарегистрироваться</a>
+            <button onclick="closeModal('authModal')" data-lang-key="close-button">Закрыть</button>
         </div>
-        <div class="auth-field">
-            <input type="email" id="emailInput" data-lang-key="email-placeholder" placeholder="Email">
-            <span class="error" id="emailAuthError"></span>
-        </div>
-        <div class="auth-field">
-            <input type="password" id="passwordInput" data-lang-key="password-placeholder" placeholder="Пароль">
-            <span class="error" id="passwordAuthError"></span>
-        </div>
-        <div class="auth-field" id="confirmPasswordField" style="display: none;">
-            <input type="password" id="confirmPasswordInput" data-lang-key="confirm-password-placeholder" placeholder="Подтвердите пароль">
-            <span class="error" id="confirmPasswordError"></span>
-        </div>
-        <button id="authSubmit" onclick="handleAuth()" data-lang-key="login-button">Войти</button>
-        <a href="#" id="switchAuth" onclick="switchAuthMode()" data-lang-key="register-link">Зарегистрироваться</a>
-        <button onclick="closeModal('authModal')" data-lang-key="close-button">Закрыть</button>
     </div>
-</div>
-
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <h2 data-lang-key="profile-title">Профиль</h2>
+            <img id="profileAvatar" src="https://via.placeholder.com/80?text=Avatar" alt="Avatar">
+            <input type="file" id="avatarInput" accept="image/*" onchange="updateAvatar()">
+            <div class="profile-field">
+                <label data-lang-key="profile-username">Имя пользователя:</label>
+                <input type="text" id="profileUsername" placeholder="Имя пользователя">
+                <span class="error" id="usernameError"></span>
+            </div>
+            <div class="profile-field">
+                <label data-lang-key="email-placeholder">Email:</label>
+                <input type="email" id="profileEmail" placeholder="Новый email">
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="profile-field">
+                <label data-lang-key="password-placeholder">Пароль:</label>
+                <input type="password" id="profilePassword" placeholder="Новый пароль">
+                <span class="error" id="passwordError"></span>
+            </div>
+            <button onclick="updateProfile()" data-lang-key="profile-update">Обновить профиль</button>
+            <button onclick="logout()" data-lang-key="logout">Выйти</button>
+            <h3 data-lang-key="profile-orders">История заказов</h3>
+            <div class="order-history" id="orderHistory"></div>
+            <button onclick="closeModal('profileModal')" data-lang-key="close-button">Закрыть</button>
+        </div>
+    </div>
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <h2 data-lang-key="cart-title">Корзина</h2>
@@ -206,7 +217,6 @@
             <button onclick="closeModal('favoritesModal')" data-lang-key="close-button">Закрыть</button>
         </div>
     </div>
-
     <footer>
         <p data-lang-key="footer">© 2025 TechTrend. Все права защищены.</p>
     </footer>

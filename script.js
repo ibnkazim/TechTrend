@@ -1,20 +1,75 @@
 const productsData = [
-    { id: 1, name: "Смартфон Alpha X", name_en: "Alpha X Smartphone", category: "smartphones", price: 59990, discount: 10, image: "https://via.placeholder.com/300x200?text=Alpha_X", description: "Флагманский смартфон с 6.7\" AMOLED и 128GB памяти.", description_en: "Flagship smartphone with 6.7\" AMOLED and 128GB storage." },
-    { id: 2, name: "Ноутбук Pro 16", name_en: "Pro 16 Laptop", category: "laptops", price: 129990, image: "https://via.placeholder.com/300x200?text=Pro_16", description: "Мощный ноутбук с 16\" дисплеем и RTX 3060.", description_en: "Powerful laptop with 16\" display and RTX 3060." },
-    { id: 3, name: "Беспроводные наушники Air", name_en: "Air Earbuds", category: "accessories", price: 9990, discount: 15, image: "https://via.placeholder.com/300x200?text=Air", description: "Наушники с шумоподавлением.", description_en: "Earbuds with noise cancellation." },
-    { id: 4, name: "Смартфон Neo 5G", name_en: "Neo 5G Smartphone", category: "smartphones", price: 39990, image: "https://via.placeholder.com/300x200?text=Neo_5G", description: "Смартфон с поддержкой 5G и 64MP камерой.", description_en: "5G smartphone with 64MP camera." },
-    { id: 5, name: "Ноутбук Ultra 14", name_en: "Ultra 14 Laptop", category: "laptops", price: 99990, discount: 20, image: "https://via.placeholder.com/300x200?text=Ultra_14", description: "Легкий ноутбук с 14\" экраном.", description_en: "Lightweight laptop with 14\" screen." },
-    { id: 6, name: "Зарядное устройство 65W", name_en: "65W Charger", category: "accessories", price: 2990, image: "https://via.placeholder.com/300x200?text=Charger", description: "Быстрое зарядное устройство.", description_en: "Fast charging device." },
-    { id: 7, name: "Смартфон Vision Pro", name_en: "Vision Pro Smartphone", category: "smartphones", price: 79990, image: "https://via.placeholder.com/300x200?text=Vision_Pro", description: "Премиум смартфон с 108MP камерой.", description_en: "Premium smartphone with 108MP camera." },
-    { id: 8, name: "Клавиатура RGB", name_en: "RGB Keyboard", category: "accessories", price: 4990, discount: 10, image: "https://via.placeholder.com/300x200?text=Keyboard", description: "Механическая клавиатура с подсветкой.", description_en: "Mechanical keyboard with RGB lighting." },
-    { id: 9, name: "Ноутбук Gaming X", name_en: "Gaming X Laptop", category: "laptops", price: 149990, image: "https://via.placeholder.com/300x200?text=Gaming_X", description: "Игровой ноутбук с RTX 3080.", description_en: "Gaming laptop with RTX 3080." },
-    { id: 10, name: "Умные часы Fit 3", name_en: "Fit 3 Smartwatch", category: "accessories", price: 12990, image: "https://via.placeholder.com/300x200?text=Smartwatch", description: "Умные часы с мониторингом здоровья.", description_en: "Smartwatch with health monitoring." },
+    { id: 1, name: "Смартфон Alpha X", name_en: "Alpha X Smartphone", category: "smartphones", price: 59990, discount: 10, image: "https://via.placeholder.com/300x200?text=Alpha_X_Smartphone", description: "Флагманский смартфон с 6.7\" AMOLED и 128GB памяти.", description_en: "Flagship smartphone with 6.7\" AMOLED and 128GB storage." },
+    { id: 2, name: "Ноутбук Pro 16", name_en: "Pro 16 Laptop", category: "laptops", price: 129990, discount: 15, image: "https://via.placeholder.com/300x200?text=Pro_16_Laptop", description: "Мощный ноутбук с 16\" дисплеем и RTX 3060.", description_en: "Powerful laptop with 16\" display and RTX 3060." },
+    { id: 3, name: "Беспроводные наушники Air", name_en: "Air Earbuds", category: "accessories", price: 9990, discount: 20, image: "https://via.placeholder.com/300x200?text=Air_Earbuds", description: "Наушники с шумоподавлением.", description_en: "Earbuds with noise cancellation." },
+    { id: 4, name: "Смартфон Neo 5G", name_en: "Neo 5G Smartphone", category: "smartphones", price: 39990, image: "https://via.placeholder.com/300x200?text=Neo_5G_Smartphone", description: "Смартфон с поддержкой 5G и 64MP камерой.", description_en: "5G smartphone with 64MP camera." },
+    { id: 5, name: "Ноутбук Ultra 14", name_en: "Ultra 14 Laptop", category: "laptops", price: 99990, discount: 25, image: "https://via.placeholder.com/300x200?text=Ultra_14_Laptop", description: "Легкий ноутбук с 14\" экраном.", description_en: "Lightweight laptop with 14\" screen." },
+    { id: 6, name: "Зарядное устройство 65W", name_en: "65W Charger", category: "accessories", price: 2990, image: "https://via.placeholder.com/300x200?text=65W_Charger", description: "Быстрое зарядное устройство.", description_en: "Fast charging device." },
+    { id: 7, name: "Смартфон Vision Pro", name_en: "Vision Pro Smartphone", category: "smartphones", price: 79990, image: "https://via.placeholder.com/300x200?text=Vision_Pro_Smartphone", description: "Премиум смартфон с 108MP камерой.", description_en: "Premium smartphone with 108MP camera." },
+    { id: 8, name: "Клавиатура RGB", name_en: "RGB Keyboard", category: "accessories", price: 4990, discount: 10, image: "https://via.placeholder.com/300x200?text=RGB_Keyboard", description: "Механическая клавиатура с подсветкой.", description_en: "Mechanical keyboard with RGB lighting." },
+    { id: 9, name: "Ноутбук Gaming X", name_en: "Gaming X Laptop", category: "laptops", price: 149990, image: "https://via.placeholder.com/300x200?text=Gaming_X_Laptop", description: "Игровой ноутбук с RTX 3080.", description_en: "Gaming laptop with RTX 3080." },
+    { id: 10, name: "Умные часы Fit 3", name_en: "Fit 3 Smartwatch", category: "accessories", price: 12990, image: "https://via.placeholder.com/300x200?text=Fit_3_Smartwatch", description: "Умные часы с мониторингом здоровья.", description_en: "Smartwatch with health monitoring." },
+    { id: 11, name: "Смартфон Beta Z", name_en: "Beta Z Smartphone", category: "smartphones", price: 49990, discount: 5, image: "https://via.placeholder.com/300x200?text=Beta_Z_Smartphone", description: "Смартфон с 6.5\" экраном и 256GB памяти.", description_en: "Smartphone with 6.5\" screen and 256GB storage." },
+    { id: 12, name: "Ноутбук Creator 15", name_en: "Creator 15 Laptop", category: "laptops", price: 119990, discount: 15, image: "https://via.placeholder.com/300x200?text=Creator_15_Laptop", description: "Ноутбук для профессионалов с 15\" 4K дисплеем.", description_en: "Laptop for professionals with 15\" 4K display." },
+    { id: 13, name: "Беспроводная мышь Pro", name_en: "Pro Wireless Mouse", category: "accessories", price: 3990, discount: 10, image: "https://via.placeholder.com/300x200?text=Pro_Wireless_Mouse", description: "Эргономичная мышь с высокой точностью.", description_en: "Ergonomic mouse with high precision." },
+    { id: 14, name: "Смартфон Gamma 7", name_en: "Gamma 7 Smartphone", category: "smartphones", price: 64990, discount: 12, image: "https://via.placeholder.com/300x200?text=Gamma_7_Smartphone", description: "Смартфон с тройной камерой 48MP.", description_en: "Smartphone with triple 48MP camera." },
+    { id: 15, name: "Ноутбук Slim 13", name_en: "Slim 13 Laptop", category: "laptops", price: 89990, image: "https://via.placeholder.com/300x200?text=Slim_13_Laptop", description: "Ультратонкий ноутбук с 13\" экраном.", description_en: "Ultralight laptop with 13\" screen." },
+    { id: 16, name: "Наушники Studio", name_en: "Studio Headphones", category: "accessories", price: 14990, discount: 20, image: "https://via.placeholder.com/300x200?text=Studio_Headphones", description: "Наушники с высоким качеством звука.", description_en: "Headphones with high-quality sound." },
+    { id: 17, name: "Смартфон Delta 9", name_en: "Delta 9 Smartphone", category: "smartphones", price: 54990, discount: 8, image: "https://via.placeholder.com/300x200?text=Delta_9_Smartphone", description: "Смартфон с 6.8\" экраном и 512GB памяти.", description_en: "Smartphone with 6.8\" screen and 512GB storage." },
+    { id: 18, name: "Внешний аккумулятор 10000mAh", name_en: "10000mAh Power Bank", category: "accessories", price: 2490, image: "https://via.placeholder.com/300x200?text=10000mAh_Power_Bank", description: "Компактный внешний аккумулятор.", description_en: "Compact power bank." },
+    { id: 19, name: "Ноутбук Power 17", name_en: "Power 17 Laptop", category: "laptops", price: 139990, discount: 10, image: "https://via.placeholder.com/300x200?text=Power_17_Laptop", description: "Мощный ноутбук с 17\" экраном.", description_en: "Powerful laptop with 17\" screen." },
+    { id: 20, name: "Веб-камера HD", name_en: "HD Webcam", category: "accessories", price: 5990, discount: 5, image: "https://via.placeholder.com/300x200?text=HD_Webcam", description: "Веб-камера с высоким разрешением.", description_en: "High-resolution webcam." },
 ];
 
 const newsData = [
-    { title: "Запуск новой серии смартфонов", title_en: "Launch of New Smartphone Series", description: "Представляем Alpha X с революционной камерой.", description_en: "Introducing Alpha X with a revolutionary camera.", date: "2025-05-20", image: "https://via.placeholder.com/300x150?text=News_1" },
-    { title: "Обновление прошивки ноутбуков", title_en: "Laptop Firmware Update", description: "Новые функции для серии Pro.", description_en: "New features for Pro series.", date: "2025-05-15", image: "https://via.placeholder.com/300x150?text=News_2" },
-    { title: "Скидки на аксессуары", title_en: "Discounts on Accessories", description: "До 30% скидки на наушники и зарядки!", description_en: "Up to 30% off on earbuds and chargers!", date: "2025-05-10", image: "https://via.placeholder.com/300x150?text=News_3" }
+    {
+        title: "Alpha X: Революция в мобильной фотографии",
+        title_en: "Alpha X: Revolution in Mobile Photography",
+        description: "Смартфон Alpha X с 108MP камерой и улучшенным ночным режимом теперь доступен со скидкой 10%! Идеально для съемки в любых условиях.",
+        description_en: "The Alpha X smartphone with a 108MP camera and enhanced night mode is now available at a 10% discount! Perfect for shooting in any condition.",
+        date: "2025-05-26",
+        image: "https://via.placeholder.com/300x150?text=Alpha_X_News"
+    },
+    {
+        title: "Pro 16: Новый стандарт производительности",
+        title_en: "Pro 16: New Standard of Performance",
+        description: "Ноутбук Pro 16 с RTX 3060 получил обновление прошивки, повышающее производительность на 15%. Скидка 15% только до конца мая!",
+        description_en: "The Pro 16 laptop with RTX 3060 received a firmware update boosting performance by 15%. 15% off until the end of May!",
+        date: "2025-05-24",
+        image: "https://via.placeholder.com/300x150?text=Pro_16_News"
+    },
+    {
+        title: "Air Earbuds: Звук без границ",
+        title_en: "Air Earbuds: Sound Without Limits",
+        description: "Беспроводные наушники Air с шумоподавлением теперь со скидкой 20%. Наслаждайтесь музыкой без отвлекающих факторов!",
+        description_en: "Air wireless earbuds with noise cancellation are now 20% off. Enjoy music without distractions!",
+        date: "2025-05-22",
+        image: "https://via.placeholder.com/300x150?text=Air_Earbuds_News"
+    },
+    {
+        title: "Ultra 14: Легкость, мощность, стиль",
+        title_en: "Ultra 14: Light, Powerful, Stylish",
+        description: "Ноутбук Ultra 14 с 14\" экраном и скидкой 25% — ваш идеальный спутник для работы и путешествий. Лимитированная акция!",
+        description_en: "The Ultra 14 laptop with a 14\" screen and 25% discount is your perfect companion for work and travel. Limited offer!",
+        date: "2025-05-20",
+        image: "https://via.placeholder.com/300x150?text=Ultra_14_News"
+    },
+    {
+        title: "Gamma 7: Скорость 5G уже здесь",
+        title_en: "Gamma 7: 5G Speed is Here",
+        description: "Смартфон Gamma 7 с тройной камерой 48MP и поддержкой 5G теперь со скидкой 12%. Обновите свой гаджет сегодня!",
+        description_en: "The Gamma 7 smartphone with a triple 48MP camera and 5G support is now 12% off. Upgrade your gadget today!",
+        date: "2025-05-18",
+        image: "https://via.placeholder.com/300x150?text=Gamma_7_News"
+    },
+    {
+        title: "Studio Headphones: Погружение в музыку",
+        title_en: "Studio Headphones: Immersive Music Experience",
+        description: "Наушники Studio с кристально чистым звуком и скидкой 20% — лучший выбор для меломанов. Доступны в черном и белом цветах!",
+        description_en: "Studio headphones with crystal-clear sound and a 20% discount are the best choice for music lovers. Available in black and white!",
+        date: "2025-05-16",
+        image: "https://via.placeholder.com/300x150?text=Studio_Headphones_News"
+    },
 ];
 
 const translations = {
@@ -244,6 +299,7 @@ let currentProductId = null;
 let isRegisterMode = false;
 let chartInstance = null;
 let latestOrder = null;
+let currentNewsIndex = 0;
 
 function initialize() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -252,9 +308,12 @@ function initialize() {
     updateCart();
     updateUserStatus();
     renderProducts();
+    renderDiscounts();
+    renderNews();
     renderChart();
     window.addEventListener('hashchange', handleNavigation);
     handleNavigation();
+    console.log('Initialization complete. News rendered:', newsData.length, 'items'); // Отладка
 }
 
 function toggleTheme() {
@@ -284,31 +343,34 @@ function updateLanguage() {
             element.textContent = translations[currentLanguage][key];
         }
     });
+
     document.querySelectorAll('#categoryFilter option, #discountCategoryFilter option').forEach((option, index) => {
         const keys = ['filter-all', 'filter-smartphones', 'filter-laptops', 'filter-accessories'];
         option.textContent = translations[currentLanguage][keys[index]];
     });
+
     document.querySelectorAll('#sortFilter option, #discountSortFilter option').forEach((option, index) => {
         const keys = ['sort-default', 'sort-price-asc', 'sort-price-desc', 'sort-name-asc'];
         option.textContent = translations[currentLanguage][keys[index]];
     });
+
     resetFilters();
     renderProducts();
     renderCart();
     renderDiscounts();
     renderNews();
     if (currentProductId) showProductDetail(currentProductId);
-    if (document.querySelector('#profile').style.display === 'block') showProfile();
-    if (document.querySelector('#auth').style.display === 'block') showAuthPage();
+    if (document.querySelector('#profileModal').style.display === 'flex') showProfile();
+    if (document.querySelector('#authModal').style.display === 'flex') showAuthPage();
 }
 
 function updateUserStatus() {
     const userStatus = document.querySelector('#userStatus');
     if (currentUser) {
-        userStatus.textContent = `${translations[currentLanguage]['hello']}, ${currentUser.username}`;
+        userStatus.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`;
         userStatus.setAttribute('data-lang-key', '');
     } else {
-        userStatus.textContent = translations[currentLanguage]['login'];
+        userStatus.innerHTML = translations[currentLanguage]['login'];
         userStatus.setAttribute('data-lang-key', 'login');
     }
 }
@@ -396,14 +458,10 @@ function resetFilters() {
     if (searchInput) searchInput.value = '';
     if (categoryFilter) categoryFilter.value = 'all';
     if (minPrice) minPrice.value = 0;
-    if (maxPrice) maxPrice.value = 999999;
+    if (maxPrice) maxPrice.value = 150000;
     if (discountCategoryFilter) discountCategoryFilter.value = 'all';
     if (discountMinPrice) discountMinPrice.value = 0;
-    if (discountMaxPrice) discountMaxPrice.value = 999999;
-    document.querySelector('#minPriceValue').textContent = '0';
-    document.querySelector('#maxPriceValue').textContent = '999999';
-    document.querySelector('#discountMinPriceValue').textContent = '0';
-    document.querySelector('#discountMaxPriceValue').textContent = '999999';
+    if (discountMaxPrice) discountMaxPrice.value = 150000;
 }
 
 function renderProducts(products = productsData, page = currentPage) {
@@ -427,30 +485,87 @@ function renderProducts(products = productsData, page = currentPage) {
             productDiv.innerHTML = `
                 <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
                 <h3>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</h3>
-                <p>
-                    ${product.discount ? `<span class="price-discounted">${product.price} ₽</span><span class="price-final">${finalPrice} ₽</span>` : `${product.price} ₽`}
-                </p>
+                <p>${product.discount ? `<span class="price-discounted">${product.price} ₽</span><span class="price-final">${finalPrice} ₽</span>` : `${product.price} ₽`}</p>
                 <button onclick="showProductDetail(${product.id})" data-lang-key="details-button">${translations[currentLanguage]['details-button']}</button>
                 <button onclick="addToCart(${product.id})" data-lang-key="add-to-cart">${translations[currentLanguage]['add-to-cart']}</button>
-                <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, this)" data-lang-key="${isFavorite ? 'remove-favorite' : 'add-favorite'}">${translations[currentLanguage][isFavorite ? 'remove-favorite' : 'add-favorite']}</button>
+                <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})" data-lang-key="${isFavorite ? 'remove-favorite' : 'add-favorite'}">${translations[currentLanguage][isFavorite ? 'remove-favorite' : 'add-favorite']}</button>
             `;
             productsContainer.appendChild(productDiv);
         });
     }
-    renderPagination(products.length, 'pagination');
+    renderPagination(products.length, page, 'pagination', changePage);
+}
+
+function changePage(page) {
+    currentPage = page;
+    filterProducts();
+    scrollToSection('catalog');
+}
+
+function changeDiscountPage(page) {
+    discountPage = page;
+    filterDiscounts();
+    scrollToSection('discounts');
+}
+
+function filterProducts() {
+    showSpinner();
+    const search = document.querySelector('#searchInput').value.toLowerCase();
+    const category = document.querySelector('#categoryFilter').value;
+    const minPrice = parseInt(document.querySelector('#minPrice').value) || 0;
+    const maxPrice = parseInt(document.querySelector('#maxPrice').value) || Infinity;
+    const sort = document.querySelector('#sortFilter').value;
+
+    let filteredProducts = productsData.filter(product => {
+        const name = product[currentLanguage === 'ru' ? 'name' : 'name_en'].toLowerCase();
+        const price = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+        return name.includes(search) &&
+               (category === 'all' || product.category === category) &&
+               price >= minPrice &&
+               price <= maxPrice;
+    });
+
+    if (sort === 'price-asc') {
+        filteredProducts.sort((a, b) => {
+            const priceA = a.discount ? Math.round(a.price * (1 - a.discount / 100)) : a.price;
+            const priceB = b.discount ? Math.round(b.price * (1 - b.discount / 100)) : b.price;
+            return priceA - priceB;
+        });
+    } else if (sort === 'price-desc') {
+        filteredProducts.sort((a, b) => {
+            const priceA = a.discount ? Math.round(a.price * (1 - a.discount / 100)) : a.price;
+            const priceB = b.discount ? Math.round(b.price * (1 - b.discount / 100)) : b.price;
+            return priceB - priceA;
+        });
+    } else if (sort === 'name-asc') {
+        filteredProducts.sort((a, b) => a[currentLanguage === 'ru' ? 'name' : 'name_en'].localeCompare(b[currentLanguage === 'ru' ? 'name' : 'name_en']));
+    }
+
+    renderProducts(filteredProducts);
+}
+
+function sortProducts() {
+    filterProducts();
+}
+
+function updatePriceRange() {
+    const minPrice = document.querySelector('#minPrice');
+    const maxPrice = document.querySelector('#maxPrice');
+    if (parseInt(minPrice.value) > parseInt(maxPrice.value)) {
+        minPrice.value = maxPrice.value;
+    }
+    filterProducts();
 }
 
 function renderDiscounts(products = productsData.filter(p => p.discount), page = discountPage) {
     showSpinner('discountSpinner');
-    const discountsContainer = document.querySelector('#discounts');
-    const discountProducts = document.querySelector('#discountProducts');
-    discountsContainer.style.display = 'block';
-    discountProducts.innerHTML = '';
+    const productsContainer = document.querySelector('#discountProducts');
+    productsContainer.innerHTML = '';
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const paginatedProducts = products.slice(start, end);
     if (paginatedProducts.length === 0) {
-        discountProducts.innerHTML = `<p data-lang-key="no-discounts">${translations[currentLanguage]['no-discounts']}</p>`;
+        productsContainer.innerHTML = `<p data-lang-key="no-discounts">${translations[currentLanguage]['no-discounts']}</p>`;
     } else {
         paginatedProducts.forEach(product => {
             const isFavorite = favorites.includes(product.id);
@@ -460,273 +575,199 @@ function renderDiscounts(products = productsData.filter(p => p.discount), page =
             productDiv.innerHTML = `
                 <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
                 <h3>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</h3>
-                <p>
-                    <span class="price-discounted">${product.price} ₽</span>
-                    <span class="price-final">${finalPrice} ₽</span>
-                </p>
+                <p><span class="price-discounted">${product.price} ₽</span><span class="price-final">${finalPrice} ₽</span></p>
                 <button onclick="showProductDetail(${product.id})" data-lang-key="details-button">${translations[currentLanguage]['details-button']}</button>
                 <button onclick="addToCart(${product.id})" data-lang-key="add-to-cart">${translations[currentLanguage]['add-to-cart']}</button>
-                <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, this)" data-lang-key="${isFavorite ? 'remove-favorite' : 'add-favorite'}">${translations[currentLanguage][isFavorite ? 'remove-favorite' : 'add-favorite']}</button>
+                <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})" data-lang-key="${isFavorite ? 'remove-favorite' : 'add-favorite'}">${translations[currentLanguage][isFavorite ? 'remove-favorite' : 'add-favorite']}</button>
             `;
-            discountProducts.appendChild(productDiv);
+            productsContainer.appendChild(productDiv);
         });
     }
-    renderPagination(products.length, 'discountPagination');
-}
-
-function renderNews() {
-    const newsContainer = document.querySelector('#news');
-    const newsList = document.querySelector('#newsList');
-    showSpinner();
-    newsContainer.style.display = 'block';
-    newsList.innerHTML = '';
-    newsData.forEach(item => {
-        const newsDiv = document.createElement('div');
-        newsDiv.className = 'news-item';
-        newsDiv.innerHTML = `
-            <img src="${item.image}" alt="${item[currentLanguage === 'ru' ? 'title' : 'title_en']}">
-            <div>
-                <h3>${item[currentLanguage === 'ru' ? 'title' : 'title_en']}</h3>
-                <p>${item[currentLanguage === 'ru' ? 'description' : 'description_en']}</p>
-                <p><strong data-lang-key="news-date">${translations[currentLanguage]['news-date']}:</strong> ${item.date}</p>
-            </div>
-        `;
-        newsList.appendChild(newsDiv);
-    });
-}
-
-function showProductDetail(productId) {
-    showSpinner();
-    currentProductId = productId;
-    const product = productsData.find(p => p.id === productId);
-    const isFavorite = favorites.includes(productId);
-    const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
-    document.querySelectorAll('#products, #pagination, #discounts, #news, #profile, #auth').forEach(el => el.style.display = 'none');
-    const productDetail = document.querySelector('#productDetail');
-    productDetail.style.display = 'block';
-    const productReviews = reviews[productId] || [];
-    const reviewsHtml = productReviews.map(review => `
-        <div class="review">
-            <div class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
-            <p><strong>${review.name}</strong>: ${review.text}</p>
-        </div>
-    `).join('');
-    productDetail.innerHTML = `
-        <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
-        <h2>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</h2>
-        <p><strong data-lang-key="price">${translations[currentLanguage]['price']}:</strong> ${product.discount ? `<span class="price-discounted">${product.price} ₽</span><span class="price-final">${finalPrice} ₽</span>` : `${product.price} ₽`}</p>
-        <p><strong data-lang-key="category">${translations[currentLanguage]['category']}:</strong> ${translations[currentLanguage][`filter-${product.category}`]}</p>
-        <p><strong data-lang-key="description">${translations[currentLanguage]['description']}:</strong> ${product[currentLanguage === 'ru' ? 'description' : 'description_en']}</p>
-        <button onclick="addToCart(${product.id})" data-lang-key="add-to-cart">${translations[currentLanguage]['add-to-cart']}</button>
-        <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, this)" data-lang-key="${isFavorite ? 'remove-favorite' : 'add-favorite'}">${translations[currentLanguage][isFavorite ? 'remove-favorite' : 'add-favorite']}</button>
-        <button onclick="openModal('reviewModal')" data-lang-key="review-button">${translations[currentLanguage]['review-button']}</button>
-        <button onclick="renderProducts()" data-lang-key="back-to-catalog">${translations[currentLanguage]['back-to-catalog']}</button>
-        <div class="reviews">
-            <h3 data-lang-key="reviews">${translations[currentLanguage]['reviews']}</h3>
-            ${reviewsHtml || `<p data-lang-key="no-reviews">${translations[currentLanguage]['no-reviews']}</p>`}
-        </div>
-    `;
-    scrollToSection('productDetail');
-}
-
-function toggleFavorite(productId, button) {
-    if (!currentUser) {
-        alert(translations[currentLanguage]['login-required']);
-        window.location.hash = '#auth';
-        return;
-    }
-    const index = favorites.indexOf(productId);
-    const isFavorite = index !== -1;
-    if (!isFavorite) {
-        favorites.push(productId);
-    } else {
-        favorites.splice(index, 1);
-    }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    button.classList.toggle('active');
-    button.textContent = translations[currentLanguage][isFavorite ? 'add-favorite' : 'remove-favorite'];
-    button.setAttribute('data-lang-key', isFavorite ? 'add-favorite' : 'remove-favorite');
-    renderFavorites();
-    if (document.querySelector('#productDetail').style.display === 'block') {
-        showProductDetail(productId);
-    } else if (window.location.hash === '#discounts') {
-        renderDiscounts();
-    } else {
-        renderProducts();
-    }
-}
-
-function renderFavorites() {
-    const favoritesList = document.querySelector('#favoritesList');
-    favoritesList.innerHTML = '';
-    if (favorites.length === 0) {
-        favoritesList.innerHTML = `<p data-lang-key="no-favorites">${translations[currentLanguage]['no-favorites']}</p>`;
-    } else {
-        const favoriteProducts = productsData.filter(p => favorites.includes(p.id));
-        favoriteProducts.forEach(product => {
-            const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
-            const productDiv = document.createElement('div');
-            productDiv.className = 'product';
-            productDiv.innerHTML = `
-                <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
-                <h3>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</h3>
-                <p>${product.discount ? `<span class="price-discounted">${product.price} ₽</span> <span class="price-final">${finalPrice} ₽</span>` : `${product.price} ₽`}</p>
-                <button onclick="showProductDetail(${product.id})" data-lang-key="details-button">${translations[currentLanguage]['details-button']}</button>
-                <button onclick="addToCart(${product.id})" data-lang-key="add-to-cart">${translations[currentLanguage]['add-to-cart']}</button>
-                <button class="favorite-btn active" onclick="toggleFavorite(${product.id}, this)" data-lang-key="remove-favorite">${translations[currentLanguage]['remove-favorite']}</button>
-            `;
-            favoritesList.appendChild(productDiv);
-        });
-    }
-}
-
-function openModal(modalId) {
-    if (modalId === 'favoritesModal') {
-        renderFavorites();
-    }
-    document.querySelector(`#${modalId}`).style.display = 'flex';
-}
-
-function closeModal(modalId) {
-    document.querySelector(`#${modalId}`).style.display = 'none';
-}
-
-function renderPagination(totalItems, containerId) {
-    const paginationContainer = document.querySelector(`#${containerId}`);
-    paginationContainer.innerHTML = '';
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
-        button.className = i === (containerId === 'pagination' ? currentPage : discountPage) ? 'active' : '';
-        button.onclick = () => {
-            if (containerId === 'pagination') {
-                currentPage = i;
-                filterProducts();
-            } else {
-                discountPage = i;
-                filterDiscounts();
-            }
-        };
-        paginationContainer.appendChild(button);
-    }
-}
-
-function updatePriceRange() {
-    const minPrice = parseInt(document.querySelector('#minPrice').value);
-    const maxPrice = parseInt(document.querySelector('#maxPrice').value);
-    document.querySelector('#minPriceValue').textContent = minPrice;
-    document.querySelector('#maxPriceValue').textContent = maxPrice;
-    filterProducts();
-}
-
-function updateDiscountPriceRange() {
-    const minPrice = parseInt(document.querySelector('#discountMinPrice').value);
-    const maxPrice = parseInt(document.querySelector('#discountMaxPrice').value);
-    document.querySelector('#discountMinPriceValue').textContent = minPrice;
-    document.querySelector('#discountMaxPriceValue').textContent = maxPrice;
-    filterDiscounts();
-}
-
-function filterProducts() {
-    showSpinner();
-    const category = document.querySelector('#categoryFilter').value;
-    const searchQuery = document.querySelector('#searchInput').value.toLowerCase();
-    const minPrice = parseInt(document.querySelector('#minPrice').value);
-    const maxPrice = parseInt(document.querySelector('#maxPrice').value);
-    let filteredProducts = productsData;
-    if (category !== 'all') {
-        filteredProducts = filteredProducts.filter(p => p.category === category);
-    }
-    filteredProducts = filteredProducts.filter(p => 
-        p[currentLanguage === 'ru' ? 'name' : 'name_en'].toLowerCase().includes(searchQuery) &&
-        p.price >= minPrice && p.price <= maxPrice
-    );
-    sortProducts(filteredProducts);
+    renderPagination(products.length, page, 'discountPagination', changeDiscountPage);
 }
 
 function filterDiscounts() {
     showSpinner('discountSpinner');
     const category = document.querySelector('#discountCategoryFilter').value;
-    const searchQuery = document.querySelector('#searchInput').value.toLowerCase();
-    const minPrice = parseInt(document.querySelector('#discountMinPrice').value);
-    const maxPrice = parseInt(document.querySelector('#discountMaxPrice').value);
-    let filteredProducts = productsData.filter(p => p.discount);
-    if (category !== 'all') {
-        filteredProducts = filteredProducts.filter(p => p.category === category);
+    const minPrice = parseInt(document.querySelector('#discountMinPrice').value) || 0;
+    const maxPrice = parseInt(document.querySelector('#discountMaxPrice').value) || Infinity;
+    const sort = document.querySelector('#discountSortFilter').value;
+
+    let filteredProducts = productsData.filter(product => product.discount).filter(product => {
+        const price = Math.round(product.price * (1 - product.discount / 100));
+        return (category === 'all' || product.category === category) &&
+               price >= minPrice &&
+               price <= maxPrice;
+    });
+
+    if (sort === 'price-asc') {
+        filteredProducts.sort((a, b) => {
+            const priceA = Math.round(a.price * (1 - a.discount / 100));
+            const priceB = Math.round(b.price * (1 - b.discount / 100));
+            return priceA - priceB;
+        });
+    } else if (sort === 'price-desc') {
+        filteredProducts.sort((a, b) => {
+            const priceA = Math.round(a.price * (1 - a.discount / 100));
+            const priceB = Math.round(b.price * (1 - b.discount / 100));
+            return priceB - priceA;
+        });
+    } else if (sort === 'name-asc') {
+        filteredProducts.sort((a, b) => a[currentLanguage === 'ru' ? 'name' : 'name_en'].localeCompare(b[currentLanguage === 'ru' ? 'name' : 'name_en']));
     }
-    filteredProducts = filteredProducts.filter(p => 
-        p[currentLanguage === 'ru' ? 'name' : 'name_en'].toLowerCase().includes(searchQuery) &&
-        p.price >= minPrice && p.price <= maxPrice
-    );
-    sortDiscounts(filteredProducts);
+
+    renderDiscounts(filteredProducts);
 }
 
-function sortProducts(products) {
-    const sortBy = document.querySelector('#sortFilter').value;
-    let sortedProducts = [...products];
-    if (sortBy === 'price-asc') {
-        sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price-desc') {
-        sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'name-asc') {
-        sortedProducts.sort((a, b) => a[currentLanguage === 'ru' ? 'name' : 'name_en'].localeCompare(b[currentLanguage === 'ru' ? 'name' : 'name_en']));
-    }
-    renderProducts(sortedProducts, currentPage);
+function sortDiscounts() {
+    filterDiscounts();
 }
 
-function sortDiscounts(products) {
-    const sortBy = document.querySelector('#discountSortFilter').value;
-    let sortedProducts = [...products];
-    if (sortBy === 'price-asc') {
-        sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price-desc') {
-        sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'name-asc') {
-        sortedProducts.sort((a, b) => a[currentLanguage === 'ru' ? 'name' : 'name_en'].localeCompare(b[currentLanguage === 'ru' ? 'name' : 'name_en']));
+function updateDiscountPriceRange() {
+    const minPrice = document.querySelector('#discountMinPrice');
+    const maxPrice = document.querySelector('#discountMaxPrice');
+    if (parseInt(minPrice.value) > parseInt(maxPrice.value)) {
+        minPrice.value = maxPrice.value;
     }
-    renderDiscounts(sortedProducts, discountPage);
+    filterDiscounts();
 }
 
-function addToCart(productId) {
+function renderPagination(totalItems, currentPage, containerId, pageChangeHandler) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const container = document.querySelector(`#${containerId}`);
+    container.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.className = i === currentPage ? 'active' : '';
+        button.onclick = () => pageChangeHandler(i);
+        container.appendChild(button);
+    }
+}
+
+function showProductDetail(id) {
+    showSpinner();
+    currentProductId = id;
+    const product = productsData.find(p => p.id === id);
+    if (!product) return;
+    const productsContainer = document.querySelector('#products');
+    const productDetail = document.querySelector('#productDetail');
+    const isFavorite = favorites.includes(product.id);
+    const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+    productsContainer.style.display = 'none';
+    productDetail.style.display = 'block';
+    document.querySelector('#pagination').style.display = 'none';
+    productDetail.innerHTML = `
+        <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
+        <h2>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</h2>
+        <p data-lang-key="price">${translations[currentLanguage]['price']}: ${product.discount ? `<span class="price-discounted">${product.price} ₽</span><span class="price-final">${finalPrice} ₽</span>` : `${product.price} ₽`}</p>
+        <p data-lang-key="category">${translations[currentLanguage]['category']}: ${translations[currentLanguage][`filter-${product.category}`]}</p>
+        <p data-lang-key="description">${translations[currentLanguage]['description']}: ${product[currentLanguage === 'ru' ? 'description' : 'description_en']}</p>
+        <button onclick="addToCart(${product.id})" data-lang-key="add-to-cart">${translations[currentLanguage]['add-to-cart']}</button>
+        <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})" data-lang-key="${isFavorite ? 'remove-favorite' : 'add-favorite'}">${translations[currentLanguage][isFavorite ? 'remove-favorite' : 'add-favorite']}</button>
+        <button onclick="window.location.hash='#catalog';renderProducts()" data-lang-key="back-to-catalog">${translations[currentLanguage]['back-to-catalog']}</button>
+        <div class="reviews">
+            <h3 data-lang-key="reviews">${translations[currentLanguage]['reviews']}</h3>
+            <div id="reviewsList"></div>
+            <button onclick="openModal('reviewModal')" data-lang-key="review-button">${translations[currentLanguage]['review-button']}</button>
+        </div>
+    `;
+    renderReviews(id);
+    window.location.hash = `#product-${id}`;
+}
+
+function renderReviews(productId) {
+    const reviewsList = document.querySelector('#reviewsList');
+    const productReviews = reviews[productId] || [];
+    reviewsList.innerHTML = '';
+    if (productReviews.length === 0) {
+        reviewsList.innerHTML = `<p data-lang-key="no-reviews">${translations[currentLanguage]['no-reviews']}</p>`;
+        return;
+    }
+    productReviews.forEach(review => {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.className = 'review';
+        reviewDiv.innerHTML = `
+            <p><strong>${review.name}</strong> (${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)})</p>
+            <p>${review.text}</p>
+        `;
+        reviewsList.appendChild(reviewDiv);
+    });
+}
+
+function submitReview() {
+    const name = document.querySelector('#reviewName').value.trim();
+    const text = document.querySelector('#reviewText').value.trim();
+    const rating = parseInt(document.querySelector('#reviewRating').value);
+    if (!name || !text) {
+        alert(translations[currentLanguage]['fill-fields']);
+        return;
+    }
+    if (!reviews[currentProductId]) reviews[currentProductId] = [];
+    reviews[currentProductId].push({ name, text, rating });
+    localStorage.setItem('reviews', JSON.stringify(reviews));
+    closeModal('reviewModal');
+    showProductDetail(currentProductId);
+}
+
+function addToCart(id) {
     if (!currentUser) {
         alert(translations[currentLanguage]['login-required']);
         window.location.hash = '#auth';
+        showAuthPage();
         return;
     }
-    const product = productsData.find(p => p.id === productId);
-    cart.push(product);
+    const existingItem = cart.find(item => item.id === id && item.userEmail === currentUser.email);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ id, quantity: 1, userEmail: currentUser.email });
+    }
     localStorage.setItem('cart', JSON.stringify(cart));
-    animateCartAdd(productId);
     updateCart();
+    animateCartAdd(id);
 }
 
 function updateCart() {
-    document.querySelector('#cartCount').textContent = cart.length;
+    const cartCount = document.querySelector('#cartCount');
+    const userCart = cart.filter(item => item.userEmail === currentUser?.email);
+    const totalItems = userCart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
     renderCart();
 }
 
 function renderCart() {
     const cartItems = document.querySelector('#cartItems');
+    const cartTotal = document.querySelector('#cartTotal');
     cartItems.innerHTML = '';
     let total = 0;
-    cart.forEach((item, index) => {
-        const finalPrice = item.discount ? Math.round(item.price * (1 - item.discount / 100)) : item.price;
-        total += finalPrice;
+    const userCart = cart.filter(item => item.userEmail === currentUser?.email);
+    if (userCart.length === 0) {
+        cartItems.innerHTML = `<p data-lang-key="no-items">${translations[currentLanguage]['no-items']}</p>`;
+        cartTotal.textContent = '0';
+        return;
+    }
+    userCart.forEach(item => {
+        const product = productsData.find(p => p.id === item.id);
+        if (!product) return;
+        const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+        const itemTotal = finalPrice * item.quantity;
+        total += itemTotal;
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item[currentLanguage === 'ru' ? 'name' : 'name_en']}">
-            <span>${item[currentLanguage === 'ru' ? 'name' : 'name_en']} - ${finalPrice} ₽</span>
-            <button onclick="removeFromCart(${index})" data-lang-key="remove-button">${translations[currentLanguage]['remove-button']}</button>
+            <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
+            <span>${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity})</span>
+            <span>${itemTotal} ₽</span>
+            <button onclick="removeFromCart(${item.id})" data-lang-key="remove-button">${translations[currentLanguage]['remove-button']}</button>
         `;
         cartItems.appendChild(cartItem);
     });
-    document.querySelector('#cartTotal').textContent = total;
+    cartTotal.textContent = total;
 }
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
+function removeFromCart(id) {
+    cart = cart.filter(item => !(item.id === id && item.userEmail === currentUser.email));
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCart();
 }
@@ -735,226 +776,196 @@ function checkout() {
     if (!currentUser) {
         alert(translations[currentLanguage]['login-required']);
         window.location.hash = '#auth';
-        return;
-    }
-    if (cart.length === 0) {
-        alert(translations[currentLanguage]['no-items']);
-        return;
-    }
-    const total = cart.reduce((sum, item) => sum + (item.discount ? Math.round(item.price * (1 - item.discount / 100)) : item.price), 0);
-    const order = {
-        id: `ORD_${Date.now()}`,
-        date: new Date().toLocaleString(),
-        items: [...cart],
-        total: total,
-        userId: currentUser.email,
-        status: 'completed'
-    };
-    orders.push(order);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    latestOrder = order;
-    document.querySelector('#notificationMessage').textContent = `${translations[currentLanguage]['order-success']} Order ID: ${order.id}`;
-    openModal('notificationModal');
-    cart.length = 0;
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
-    closeModal('cartModal');
-}
-
-function downloadOrderPDF(order = latestOrder) {
-    if (!order) return;
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.setFontSize(16);
-    doc.text(translations[currentLanguage]['order-receipt'], 20, 20);
-    doc.setFontSize(12);
-    doc.text(`${translations[currentLanguage]['order-date']}: ${order.date}`, 20, 30);
-    doc.text(`${translations[currentLanguage]['username']}: ${currentUser.username}`, 20, 40);
-    doc.text(translations[currentLanguage]['items'], 20, 50);
-    order.items.forEach((item, index) => {
-        const finalPrice = item.discount ? Math.round(item.price * (1 - item.discount / 100)) : item.price;
-        doc.text(`${item[currentLanguage === 'ru' ? 'name' : 'name_en']}: ${finalPrice} ₽`, 20, 60 + (index * 10));
-    });
-    doc.text(`${translations[currentLanguage]['order-total']}: ${order.total} ₽`, 20, 60 + (order.items.length * 10));
-    doc.save(`Order_${order.id}.pdf`);
-}
-
-function submitReview() {
-    if (!currentUser) {
-        alert(translations[currentLanguage]['login-required']);
-        window.location.hash = '#auth';
-        return;
-    }
-    const name = document.querySelector('#reviewName').value.trim();
-    const text = document.querySelector('#reviewText').value.trim();
-    const rating = parseInt(document.querySelector('#reviewRating').value);
-    if (!name || !text) {
-        alert(translations[currentLanguage]['fill-fields']);
-        return;
-    }
-    if (!reviews[currentProductId]) {
-        reviews[currentProductId] = [];
-    }
-    reviews[currentProductId].push({ name, text, rating, userId: currentUser.email });
-    localStorage.setItem('reviews', JSON.stringify(reviews));
-    alert(translations[currentLanguage]['review-success']);
-    closeModal('reviewModal');
-    document.querySelector('#reviewName').value = '';
-    document.querySelector('#reviewText').value = '';
-    showProductDetail(currentProductId);
-}
-
-function showProfile() {
-    if (!currentUser) {
-        alert(translations[currentLanguage]['login-required']);
         showAuthPage();
         return;
     }
-    showSpinner();
-    document.querySelectorAll('#products, #productDetail, #discounts, #news, #authModal').forEach(el => el.style.display = 'none');
-    document.querySelector('#pagination').style.display = 'none';
-    document.querySelector('#discountPagination').style.display = 'none';
-    openModal('profileModal');
-    document.querySelector('#profileUsername').value = currentUser.username;
-    document.querySelector('#profileEmail').value = currentUser.email;
-    document.querySelector('#profileAvatar').src = currentUser.avatar || 'https://via.placeholder.com/80?text=Avatar';
-    document.querySelector('#profilePassword').value = '';
-    document.querySelector('#usernameError').textContent = '';
-    document.querySelector('#emailError').textContent = '';
-    document.querySelector('#passwordError').textContent = '';
-    const orderHistory = document.querySelector('#orderHistory');
-    orderHistory.innerHTML = '';
-    const userOrders = orders.filter(o => o.userId === currentUser.email);
-    if (userOrders.length === 0) {
-        orderHistory.innerHTML = `<p data-lang-key="no-orders">${translations[currentLanguage]['no-orders']}</p>`;
+    const userCart = cart.filter(item => item.userEmail === currentUser.email);
+    if (userCart.length === 0) {
+        alert(translations[currentLanguage]['no-items']);
+        return;
+    }
+    const order = {
+        id: orders.length + 1,
+        userEmail: currentUser.email,
+        date: new Date().toISOString(),
+        items: userCart,
+        total: userCart.reduce((sum, item) => {
+            const product = productsData.find(p => p.id === item.id);
+            const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+            return sum + finalPrice * item.quantity;
+        }, 0)
+    };
+    orders.push(order);
+    latestOrder = order;
+    localStorage.setItem('orders', JSON.stringify(orders));
+    cart = cart.filter(item => item.userEmail !== currentUser.email);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+    closeModal('cartModal');
+    openModal('notificationModal');
+    document.querySelector('#notificationMessage').innerHTML = `
+        <p data-lang-key="order-success">${translations[currentLanguage]['order-success']}</p>
+        <p>${translations[currentLanguage]['order-total']}: ${order.total} ₽</p>
+    `;
+}
+
+function downloadOrderPDF() {
+    if (!latestOrder) return;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text(translations[currentLanguage]['order-receipt'], 10, 10);
+    doc.setFontSize(12);
+    doc.text(`${translations[currentLanguage]['username']}: ${currentUser.email}`, 10, 20);
+    doc.text(`${translations[currentLanguage]['order-date']}: ${new Date(latestOrder.date).toLocaleString()}`, 10, 30);
+    doc.text(`${translations[currentLanguage]['items']}:`, 10, 40);
+    let yPos = 50;
+    latestOrder.items.forEach((item, index) => {
+        const product = productsData.find(p => p.id === item.id);
+        const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+        doc.text(`${index + 1}. ${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity}) - ${finalPrice * item.quantity} ₽`, 15, yPos);
+        yPos += 10;
+    });
+    doc.text(`${translations[currentLanguage]['order-total']}: ${latestOrder.total} ₽`, 10, yPos);
+    doc.save('order_receipt.pdf');
+}
+
+function toggleFavorite(id) {
+    if (!currentUser) {
+        alert(translations[currentLanguage]['login-required']);
+        window.location.hash = '#auth';
+        showAuthPage();
+        return;
+    }
+    const index = favorites.indexOf(id);
+    if (index === -1) {
+        favorites.push(id);
     } else {
-        userOrders.forEach(order => {
-            const orderDiv = document.createElement('div');
-            orderDiv.className = 'order';
-            orderDiv.innerHTML = `
-                <p><strong data-lang-key="order-date">${translations[currentLanguage]['order-date']}:</strong> ${order.date}</p>
-                <p><strong data-lang-key="items">${translations[currentLanguage]['items']}:</strong> ${order.items.map(item => item[currentLanguage === 'ru' ? 'name' : 'name_en']).join(', ')}</p>
-                <p><strong data-lang-key="order-total">${translations[currentLanguage]['order-total']}:</strong> ${order.total} ₽</p>
-                <button onclick="downloadOrderPDF(${JSON.stringify(order)})" data-lang-key="download-pdf">${translations[currentLanguage]['download-pdf']}</button>
-            `;
-            orderHistory.appendChild(orderDiv);
-        });
+        favorites.splice(index, 1);
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    if (document.querySelector('#productDetail').style.display === 'block') {
+        showProductDetail(currentProductId);
+    } else if (window.location.hash === '#favorites') {
+        renderFavorites();
+    } else {
+        renderProducts();
+        renderDiscounts();
     }
 }
 
-function updateProfile() {
-    const username = document.querySelector('#profileUsername').value.trim();
-    const email = document.querySelector('#profileEmail').value.trim();
-    const password = document.querySelector('#profilePassword').value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let hasError = false;
-    document.querySelector('#usernameError').textContent = '';
-    document.querySelector('#emailError').textContent = '';
-    document.querySelector('#passwordError').textContent = '';
-    
-    if (!username || username.length < 3 || username.length > 20) {
-        document.querySelector('#usernameError').textContent = translations[currentLanguage]['username-error'];
-        hasError = true;
+function renderFavorites() {
+    const favoritesList = document.querySelector('#favoritesList');
+    favoritesList.innerHTML = '';
+    const favoriteProducts = productsData.filter(p => favorites.includes(p.id));
+    if (favoriteProducts.length === 0) {
+        favoritesList.innerHTML = `<p data-lang-key="no-favorites">${translations[currentLanguage]['no-favorites']}</p>`;
+        return;
     }
-    if (!email || !emailRegex.test(email)) {
-        document.querySelector('#emailError').textContent = translations[currentLanguage]['email-error'];
-        hasError = true;
-    }
-    if (password && password.length < 6) {
-        document.querySelector('#passwordError').textContent = translations[currentLanguage]['password-too-short'];
-        hasError = true;
-    }
-    if (email !== currentUser.email && Object.values(users).some(u => u.email === email)) {
-        document.querySelector('#emailError').textContent = translations[currentLanguage]['user-exists'];
-        hasError = true;
-    }
-    if (username !== currentUser.username && Object.values(users).some(u => u.username === username)) {
-        document.querySelector('#usernameError').textContent = translations[currentLanguage]['invalid-username'];
-        hasError = true;
-    }
-    if (hasError) return;
-    
-    if (email !== currentUser.email) {
-        delete users[currentUser.email];
-        currentUser.email = email;
-        users[email] = currentUser;
-    }
-    if (username !== currentUser.username) {
-        currentUser.username = username;
-        users[currentUser.email] = currentUser;
-    }
-    if (password) {
-        currentUser.password = password;
-        users[currentUser.email] = currentUser;
-    }
-    localStorage.setItem('user', JSON.stringify(currentUser));
-    localStorage.setItem('users', JSON.stringify(users));
-    alert(translations[currentLanguage]['profile-updated']);
-    updateUserStatus();
-    showProfile();
+    favoriteProducts.forEach(product => {
+        const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        productDiv.innerHTML = `
+            <img src="${product.image}" alt="${product[currentLanguage === 'ru' ? 'name' : 'name_en']}">
+            <h3>${product[currentLanguage === 'ru' ? 'name' : 'name_en']}</h3>
+            <p>${product.discount ? `<span class="price-discounted">${product.price} ₽</span><span class="price-final">${finalPrice} ₽</span>` : `${product.price} ₽`}</p>
+            <button onclick="showProductDetail(${product.id})" data-lang-key="details-button">${translations[currentLanguage]['details-button']}</button>
+            <button onclick="addToCart(${product.id})" data-lang-key="add-to-cart">${translations[currentLanguage]['add-to-cart']}</button>
+            <button class="favorite-btn active" onclick="toggleFavorite(${product.id})" data-lang-key="remove-favorite">${translations[currentLanguage]['remove-favorite']}</button>
+        `;
+        favoritesList.appendChild(productDiv);
+    });
 }
 
-function updateAvatar() {
-    const file = document.querySelector('#avatarInput').files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            currentUser.avatar = e.target.result;
-            localStorage.setItem('user', JSON.stringify(currentUser));
-            users[currentUser.email] = currentUser;
-            localStorage.setItem('users', JSON.stringify(users));
-            document.querySelector('#profileAvatar').src = currentUser.avatar;
-            alert(translations[currentLanguage]['avatar-success']);
-        };
-        reader.readAsDataURL(file);
+function renderNews() {
+    const sliderContainer = document.querySelector('#sliderContainer');
+    if (!sliderContainer) {
+        console.error('Slider container not found! Check index.html for #sliderContainer');
+        return;
     }
+    sliderContainer.innerHTML = '';
+    console.log('Rendering news:', newsData); // Отладка
+    newsData.forEach((news, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'news-slide';
+        slide.innerHTML = `
+            <img src="${news.image}" alt="${news[currentLanguage === 'ru' ? 'title' : 'title_en']}">
+            <h3>${news[currentLanguage === 'ru' ? 'title' : 'title_en']}</h3>
+            <p data-lang-key="news-date">${translations[currentLanguage]['news-date']}: ${news.date}</p>
+            <p>${news[currentLanguage === 'ru' ? 'description' : 'description_en'].substring(0, 50)}...</p>
+        `;
+        slide.onclick = () => openNewsModal(index);
+        sliderContainer.appendChild(slide);
+    });
+    updateSlider();
 }
 
-function logout() {
-    currentUser = null;
-    localStorage.removeItem('user');
-    updateUserStatus();
-    alert(translations[currentLanguage]['logout-success']);
-    window.location.hash = '#home';
-    handleNavigation();
+function updateSlider() {
+    const sliderContainer = document.querySelector('#sliderContainer');
+    const slideWidth = document.querySelector('.news-slide').offsetWidth + 20;
+    sliderContainer.style.transform = `translateX(-${currentNewsIndex * slideWidth}px)`;
+}
+
+function prevNews() {
+    currentNewsIndex = Math.max(0, currentNewsIndex - 1);
+    updateSlider();
+}
+
+function nextNews() {
+    currentNewsIndex = Math.min(newsData.length - 3, currentNewsIndex + 1);
+    updateSlider();
+}
+
+function openNewsModal(index) {
+    const news = newsData[index];
+    document.querySelector('#newsModalImage').src = news.image;
+    document.querySelector('#newsModalTitle').textContent = news[currentLanguage === 'ru' ? 'title' : 'title_en'];
+    document.querySelector('#newsModalDate').textContent = `${translations[currentLanguage]['news-date']}: ${news.date}`;
+    document.querySelector('#newsModalDescription').textContent = news[currentLanguage === 'ru' ? 'description' : 'description_en'];
+    document.querySelector('#newsModal').style.display = 'flex';
+}
+
+function closeNewsModal() {
+    document.querySelector('#newsModal').style.display = 'none';
 }
 
 function showAuthPage() {
-    showSpinner();
-    document.querySelectorAll('#products, #productDetail, #discounts, #news, #profileModal').forEach(el => el.style.display = 'none');
-    document.querySelector('#pagination').style.display = 'none';
-    document.querySelector('#discountPagination').style.display = 'none';
     openModal('authModal');
     isRegisterMode = false;
-    updateAuthForm();
-}
-function switchAuthMode() {
-    isRegisterMode = !isRegisterMode;
-    updateAuthForm();
+    document.querySelector('#authTitle').setAttribute('data-lang-key', 'login-title');
+    document.querySelector('#authTitle').textContent = translations[currentLanguage]['login-title'];
+    document.querySelector('#authSubmit').setAttribute('data-lang-key', 'login-button');
+    document.querySelector('#authSubmit').textContent = translations[currentLanguage]['login-button'];
+    document.querySelector('#switchAuth').setAttribute('data-lang-key', 'register-link');
+    document.querySelector('#switchAuth').textContent = translations[currentLanguage]['register-link'];
+    document.querySelector('#usernameField').style.display = 'none';
+    document.querySelector('#confirmPasswordField').style.display = 'none';
+    clearAuthErrors();
 }
 
-function updateAuthForm() {
-    const authTitle = document.querySelector('#authTitle');
-    const authSubmit = document.querySelector('#authSubmit');
-    const switchAuth = document.querySelector('#switchAuth');
-    const confirmPasswordInput = document.querySelector('#confirmPasswordField');
-    const usernameInput = document.querySelector('#usernameField');
-    authTitle.textContent = translations[currentLanguage][isRegisterMode ? 'register-title' : 'login-title'];
-    authTitle.setAttribute('data-lang-key', isRegisterMode ? 'register-title' : 'login-title');
-    authSubmit.textContent = translations[currentLanguage][isRegisterMode ? 'register-button' : 'login-button'];
-    authSubmit.setAttribute('data-lang-key', isRegisterMode ? 'register-button' : 'login-button');
-    switchAuth.textContent = translations[currentLanguage][isRegisterMode ? 'login-link' : 'register-link'];
-    switchAuth.setAttribute('data-lang-key', isRegisterMode ? 'login-link' : 'register-link');
-    confirmPasswordInput.style.display = isRegisterMode ? 'block' : 'none';
-    usernameInput.style.display = isRegisterMode ? 'block' : 'none';
-    document.querySelector('#usernameInput').value = '';
-    document.querySelector('#emailInput').value = '';
-    document.querySelector('#passwordInput').value = '';
-    document.querySelector('#confirmPasswordInput').value = '';
+function switchAuthMode() {
+    isRegisterMode = !isRegisterMode;
+    document.querySelector('#authTitle').setAttribute('data-lang-key', isRegisterMode ? 'register-title' : 'login-title');
+    document.querySelector('#authTitle').textContent = translations[currentLanguage][isRegisterMode ? 'register-title' : 'login-title'];
+    document.querySelector('#authSubmit').setAttribute('data-lang-key', isRegisterMode ? 'register-button' : 'login-button');
+    document.querySelector('#authSubmit').textContent = translations[currentLanguage][isRegisterMode ? 'register-button' : 'login-button'];
+    document.querySelector('#switchAuth').setAttribute('data-lang-key', isRegisterMode ? 'login-link' : 'register-link');
+    document.querySelector('#switchAuth').textContent = translations[currentLanguage][isRegisterMode ? 'login-link' : 'register-link'];
+    document.querySelector('#usernameField').style.display = isRegisterMode ? 'block' : 'none';
+    document.querySelector('#confirmPasswordField').style.display = isRegisterMode ? 'block' : 'none';
+    clearAuthErrors();
+}
+
+function clearAuthErrors() {
     document.querySelector('#usernameAuthError').textContent = '';
     document.querySelector('#emailAuthError').textContent = '';
     document.querySelector('#passwordAuthError').textContent = '';
     document.querySelector('#confirmPasswordError').textContent = '';
+}
+
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function handleAuth() {
@@ -962,24 +973,17 @@ function handleAuth() {
     const email = document.querySelector('#emailInput').value.trim();
     const password = document.querySelector('#passwordInput').value.trim();
     const confirmPassword = document.querySelector('#confirmPasswordInput').value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    clearAuthErrors();
+
     let hasError = false;
-    document.querySelector('#usernameAuthError').textContent = '';
-    document.querySelector('#emailAuthError').textContent = '';
-    document.querySelector('#passwordAuthError').textContent = '';
-    document.querySelector('#confirmPasswordError').textContent = '';
-    
-    if (!email || !password || (isRegisterMode && (!username || !confirmPassword))) {
-        document.querySelector('#emailAuthError').textContent = translations[currentLanguage]['fill-fields'];
-        hasError = true;
-    }
-    if (!emailRegex.test(email)) {
-        document.querySelector('#emailAuthError').textContent = translations[currentLanguage]['email-error'];
-        hasError = true;
-    }
+
     if (isRegisterMode) {
-        if (username.length < 3 || username.length > 20) {
+        if (!username || username.length < 3 || username.length > 20) {
             document.querySelector('#usernameAuthError').textContent = translations[currentLanguage]['username-error'];
+            hasError = true;
+        }
+        if (!validateEmail(email)) {
+            document.querySelector('#emailAuthError').textContent = translations[currentLanguage]['email-error'];
             hasError = true;
         }
         if (password.length < 6) {
@@ -994,87 +998,250 @@ function handleAuth() {
             document.querySelector('#emailAuthError').textContent = translations[currentLanguage]['user-exists'];
             hasError = true;
         }
-        if (Object.values(users).some(u => u.username === username)) {
-            document.querySelector('#usernameAuthError').textContent = translations[currentLanguage]['invalid-username'];
+        if (!hasError) {
+            users[email] = { username, email, password, avatar: 'https://via.placeholder.com/80?text=Avatar' };
+            localStorage.setItem('users', JSON.stringify(users));
+            currentUser = { email, username, avatar: users[email].avatar };
+            localStorage.setItem('user', JSON.stringify(currentUser));
+            alert(translations[currentLanguage]['register-success']);
+            closeModal('authModal');
+            updateUserStatus();
+            window.location.hash = '#profile';
+            showProfile();
+        }
+    } else {
+        if (!validateEmail(email)) {
+            document.querySelector('#emailAuthError').textContent = translations[currentLanguage]['email-error'];
             hasError = true;
         }
-        if (hasError) return;
-        
-        const newUser = {
-            username,
-            email,
-            password,
-            avatar: null
-        };
-        users[email] = newUser;
-        localStorage.setItem('users', JSON.stringify(users));
-        currentUser = newUser;
-        localStorage.setItem('user', JSON.stringify(currentUser));
-        alert(translations[currentLanguage]['register-success']);
-        resetFilters();
-        filterProducts();
-        window.location.hash = '#home';
-        handleNavigation();
-    } else {
+        if (!password) {
+            document.querySelector('#passwordAuthError').textContent = translations[currentLanguage]['fill-fields'];
+            hasError = true;
+        }
         if (users[email] && users[email].password === password) {
-            currentUser = users[email];
+            currentUser = { email, username: users[email].username, avatar: users[email].avatar };
             localStorage.setItem('user', JSON.stringify(currentUser));
-            alert(translations[currentLanguage]['login-button']);
-            resetFilters();
-            filterProducts();
-            window.location.hash = '#home';
-            handleNavigation();
+            closeModal('authModal');
+            updateUserStatus();
+            window.location.hash = '#profile';
+            showProfile();
         } else {
             document.querySelector('#emailAuthError').textContent = translations[currentLanguage]['invalid-login'];
+            hasError = true;
         }
     }
 }
 
-function renderChart() {
-    const ctx = document.querySelector('#categoryChart').getContext('2d');
-    const categoryCounts = {
-        smartphones: productsData.filter(p => p.category === 'smartphones').length,
-        laptops: productsData.filter(p => p.category === 'laptops').length,
-        accessories: productsData.filter(p => p.category === 'accessories').length
-    };
-    if (chartInstance) {
-        chartInstance.destroy();
+function showProfile() {
+    if (!currentUser) {
+        window.location.hash = '#auth';
+        showAuthPage();
+        return;
     }
-    const isDarkTheme = document.body.classList.contains('dark');
+    openModal('profileModal');
+    document.querySelector('#profileUsername').value = currentUser.username;
+    document.querySelector('#profileEmail').value = currentUser.email;
+    document.querySelector('#profilePassword').value = '';
+    document.querySelector('#profileAvatar').src = currentUser.avatar;
+    renderOrderHistory();
+    clearProfileErrors();
+}
+
+function clearProfileErrors() {
+    document.querySelector('#usernameError').textContent = '';
+    document.querySelector('#emailError').textContent = '';
+    document.querySelector('#passwordError').textContent = '';
+}
+
+function updateProfile() {
+    const username = document.querySelector('#profileUsername').value.trim();
+    const email = document.querySelector('#profileEmail').value.trim();
+    const password = document.querySelector('#profilePassword').value.trim();
+    clearProfileErrors();
+
+    let hasError = false;
+
+    if (!username || username.length < 3 || username.length > 20) {
+        document.querySelector('#usernameError').textContent = translations[currentLanguage]['username-error'];
+        hasError = true;
+    }
+    if (!validateEmail(email)) {
+        document.querySelector('#emailError').textContent = translations[currentLanguage]['email-error'];
+        hasError = true;
+    }
+    if (email !== currentUser.email && users[email]) {
+        document.querySelector('#emailError').textContent = translations[currentLanguage]['user-exists'];
+        hasError = true;
+    }
+    if (password && password.length < 6) {
+        document.querySelector('#passwordError').textContent = translations[currentLanguage]['password-too-short'];
+        hasError = true;
+    }
+
+    if (!hasError) {
+        if (email !== currentUser.email) {
+            users[email] = users[currentUser.email];
+            delete users[currentUser.email];
+        }
+        users[email] = {
+            ...users[email],
+            username,
+            email,
+            password: password || users[email].password,
+            avatar: currentUser.avatar
+        };
+        currentUser = { email, username, avatar: users[email].avatar };
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        cart = cart.map(item => item.userEmail === currentUser.email ? { ...item, userEmail: email } : item);
+        orders = orders.map(order => order.userEmail === currentUser.email ? { ...order, userEmail: email } : order);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('orders', JSON.stringify(orders));
+        alert(translations[currentLanguage]['profile-updated']);
+        updateUserStatus();
+        showProfile();
+    }
+}
+
+function updateAvatar() {
+    const file = document.querySelector('#avatarInput').files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            currentUser.avatar = reader.result;
+            users[currentUser.email].avatar = reader.result;
+            localStorage.setItem('user', JSON.stringify(currentUser));
+            localStorage.setItem('users', JSON.stringify(users));
+            document.querySelector('#profileAvatar').src = reader.result;
+            alert(translations[currentLanguage]['avatar-success']);
+            updateUserStatus();
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function renderOrderHistory() {
+    const orderHistory = document.querySelector('#orderHistory');
+    orderHistory.innerHTML = '';
+    const userOrders = orders.filter(order => order.userEmail === currentUser.email);
+    if (userOrders.length === 0) {
+        orderHistory.innerHTML = `<p data-lang-key="no-orders">${translations[currentLanguage]['no-orders']}</p>`;
+        return;
+    }
+    userOrders.forEach(order => {
+        const orderDiv = document.createElement('div');
+        orderDiv.className = 'order';
+        let itemsList = '';
+        order.items.forEach(item => {
+            const product = productsData.find(p => p.id === item.id);
+            if (product) {
+                const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+                itemsList += `<p>${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity}) - ${finalPrice * item.quantity} ₽</p>`;
+            }
+        });
+        orderDiv.innerHTML = `
+            <p data-lang-key="order-date">${translations[currentLanguage]['order-date']}: ${new Date(order.date).toLocaleString()}</p>
+            <p data-lang-key="items">${translations[currentLanguage]['items']}:</p>
+            ${itemsList}
+            <p data-lang-key="order-total">${translations[currentLanguage]['order-total']}: ${order.total} ₽</p>
+            <button onclick="downloadOrderPDF(${order.id})" data-lang-key="download-pdf">${translations[currentLanguage]['download-pdf']}</button>
+        `;
+        orderHistory.appendChild(orderDiv);
+    });
+}
+
+function downloadOrderPDF(orderId) {
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text(translations[currentLanguage]['order-receipt'], 10, 10);
+    doc.setFontSize(12);
+    doc.text(`${translations[currentLanguage]['username']}: ${currentUser.email}`, 10, 20);
+    doc.text(`${translations[currentLanguage]['order-date']}: ${new Date(order.date).toLocaleString()}`, 10, 30);
+    doc.text(`${translations[currentLanguage]['items']}:`, 10, 40);
+    let yPos = 50;
+    order.items.forEach((item, index) => {
+        const product = productsData.find(p => p.id === item.id);
+        const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+        doc.text(`${index + 1}. ${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity}) - ${finalPrice * item.quantity} ₽`, 15, yPos);
+        yPos += 10;
+    });
+    doc.text(`${translations[currentLanguage]['order-total']}: ${order.total} ₽`, 10, yPos);
+    doc.save(`order_${order.id}_receipt.pdf`);
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('user');
+    updateUserStatus();
+    updateCart();
+    closeModal('profileModal');
+    alert(translations[currentLanguage]['logout-success']);
+    window.location.hash = '#home';
+}
+
+function renderChart() {
+    const ctx = document.querySelector('#categoryChart').getContext("2d");
+    const categories = ["smartphones", "laptops", "accessories"];
+    const data = categories.map(cat => productsData.filter(p => p.category === cat).length);
+    const backgroundColors = ["#FF6384", "#36A2EB", "#FFCE56"];
+    const borderColors = ["#FF6384", "#36A2EB", "#FFCE56"];
+
+    if (chartInstance) chartInstance.destroy();
+
     chartInstance = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: [
-                translations[currentLanguage]['filter-smartphones'],
-                translations[currentLanguage]['filter-laptops'],
-                translations[currentLanguage]['filter-accessories']
-            ],
-            datasets: [{
-                data: [categoryCounts.smartphones, categoryCounts.laptops, categoryCounts.accessories],
-                backgroundColor: ['#4CAF50', '#2E7D32', '#81C784'],
-                borderColor: isDarkTheme ? '#333' : '#fff',
-                borderWidth: 1
-            }]
-        },
+        type: "pie",
+        data: 300,
+        datasets: [{
+            data: [data],
+            backgroundColor: ["#FF6384", "#36FFFFEB", "#FFFFCE"],
+            borderColor: ["#FF6384", "#36FFFFEB", "#FFFFCE"],
+            borderWidth: 1
+        }],
         options: {
-            responsive: true,
+            responsive: categories.map(cat => translations[currentLanguage][`filter-${cat}`]),
             plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        color: isDarkTheme ? '#e0e0e0' : '#000',
-                        font: { size: 12 }
-                    }
-                },
-                title: {
-                    display: true,
-                    text: translations[currentLanguage]['chart-title'],
-                    color: isDarkTheme ? '#e0e0e0' : '#000',
-                    font: { size: 14 }
-                }
+                title: translations[currentLanguage]['chart-title']
             }
         }
     });
 }
 
-initialize();
+function openModal(modalId) {
+    document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+    document.querySelector(`#${modalId}`).style.display = 'flex';
+}
+
+function closeModal(modalId) {
+    document.querySelector(`#${modalId}`).style.display = 'none';
+}
+
+function showSuggestions() {
+    const input = document.querySelector('#searchInput').value.toLowerCase();
+    trim();
+    const suggestions = document.querySelector('#suggestions');
+    suggestions.innerHTML = '';
+    if (!input) {
+        suggestions.style.display = 'none';
+        return;
+    }
+    const filteredProducts = productsData.filter(p => p[currentLanguage === 'ru' ? 'name' : 'name'] .toLowerCase() .includes(input));
+    if (filteredProducts.length === 0) {
+        suggestions.style.display = 'none';
+        filteredProducts.slice(0, 5).forEach((product) => {
+            product.suggestion = document.createElement('div');
+            suggestion.textContent = product[currentLanguage === 'ru' ? 'name' : 'name_en'];
+            suggestion.onclick = filteredProducts => {
+                filteredProducts = product[0];
+                suggestions.style.display = 'none';
+                filterProducts(suggestions);
+            }
+            suggestions.appendChild(suggestions);
+        });
+        suggestions.style.display = 'block';
+    }
+}
+
+window.addEventListener('load', initialize);
