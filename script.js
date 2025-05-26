@@ -1089,22 +1089,34 @@ function downloadOrderPDF(orderId = null) {
     }
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+    const companyName = "TechTrend";
+    const orderDateTime = new Date(); // Текущая дата и время: 26.05.2025, 03:14 AM BST
+    const formattedDateTime = orderDateTime.toLocaleString(currentLanguage === 'ru' ? 'ru-RU' : 'en-US', {
+        year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London'
+    });
+
+    // Устанавливаем стандартный шрифт, чтобы избежать проблем с кодировкой
+    doc.setFont("Helvetica", "normal");
     doc.setFontSize(16);
-    doc.text(translations[currentLanguage]['order-receipt'], 20, 20);
+    doc.text("Order Receipt", 20, 20); // Упрощённый заголовок, чтобы избежать проблем с переводом
     doc.setFontSize(12);
-    doc.text(`${translations[currentLanguage]['order-date']}: ${order.date}`, 20, 30);
-    doc.text(`${translations[currentLanguage]['username']}: ${currentUser.username}`, 20, 40);
-    doc.text(translations[currentLanguage]['items'], 20, 50);
-    let y = 60;
+    doc.text(`Date: ${formattedDateTime}`, 20, 30);
+    doc.text(`Company: ${companyName}`, 20, 40);
+    doc.text(`Buyer: ${currentUser.username}`, 20, 50);
+    doc.text(`Email: ${currentUser.email}`, 20, 60);
+    doc.text("Items:", 20, 70);
+
+    let y = 80;
     order.items.forEach(item => {
         const product = productsData.find(p => p.id === item.id);
         if (product) {
-            const price = product.discount ? product.price * (1 - product.discount / 100) : product.price;
-            doc.text(`${product[currentLanguage === 'ru' ? 'name' : 'name_en']} (x${item.quantity}): ${(price * item.quantity).toFixed(2)} ₽`, 20, y);
+            // Используем английское название, если текущий язык — русский, чтобы избежать проблем с кириллицей
+            const productName = currentLanguage === 'ru' ? product.name_en : product.name_en;
+            doc.text(`${productName} (x${item.quantity})`, 20, y);
             y += 10;
         }
     });
-    doc.text(`${translations[currentLanguage]['order-total']}: ${order.total.toFixed(2)} ₽`, 20, y + 10);
+    doc.text(`Total: ${order.total.toFixed(2)} RUB`, 20, y + 10); // Используем "RUB" вместо "₽"
     doc.save(`order_${order.id}.pdf`);
 }
 
